@@ -1,0 +1,13 @@
+.fund-transfer-btn {
+    margin: 50px 10px;
+}
+.fund-transfer-amount {
+    display: flex;
+    justify-content: space-between;
+}
+.fund-transfer-amount span {
+    color: #EDC228;
+    padding: .375rem .75rem;
+    font-size: 30px;
+    height: 60px;
+}

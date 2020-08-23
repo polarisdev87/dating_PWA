@@ -1,0 +1,14 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="blocked-profile-wrap">
+  <app-header (backAction)="back()" [title]="title"></app-header>
+  <div *ngIf='blockedUser != undefined'>
+    <div class="blocked-profile-sec" *ngFor="let user of blockedUser ; let i = index">
+      <div class="flex-grow-1">
+        <p>{{user.date}}<span>{{user.name}}</span></p>
+      </div>
+      <div>
+        <button type="button" class="btn" (click)="unBlock(user,i)">{{status}}</button>
+      </div>
+    </div>
+  </div>
+</div>

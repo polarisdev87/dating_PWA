@@ -1,0 +1,63 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="discovery-page-wraper">
+  <app-header [leftBtn]='leftBtn' (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()">
+  </app-header>
+  <div class="discovery-sec" *ngIf="myProfile != undefined">
+    <h6 class="text-right" (click)="resetDetails()">RESET ALL</h6>
+    <div class="x-global">
+      <span>Video Date</span><toggle-button [checked]='videoChecked' (changed)="changeDateLocally($event)"></toggle-button>
+    </div>
+    <div class="x-level" [hidden]="myProfile.gender.toLowerCase() !=='male'">
+      <p>Xclusivity Level</p>
+      <div class="x-level-inner">
+        <div 
+        *ngFor="let displayLevel of displayLevels; let i = index"
+        [ngClass]="{'x-level-active': selectedLevelsFlag[i]}"
+        (click)="onSelectLevelChange(!selectedLevelsFlag[i],i)" 
+        >{{displayLevel}}</div>
+      </div>
+    </div>
+    <p>Age Range <span>{{minAge}}-{{maxAge}}</span></p>
+    <div class="custom-slider">
+      <ng5-slider [(value)]="minAge" [(highValue)]="maxAge" [options]="options1">
+      </ng5-slider>
+    </div>
+    <div class="x-type" [hidden]="myProfile.gender.toLowerCase() !=='male'" [ngClass]="{'x-global-date': videoChecked}">
+      <p>Date Types</p>
+      <div class="x-type-inner">
+        <div 
+        (click)="onSelectFilterDateTypesChange(!selectedFilterDateTypesFlag[i],i)" 
+        *ngFor="let displayFilterDateType of displayFilterDateTypes; let i = index"
+        [ngClass]="{'x-type-active': selectedFilterDateTypesFlag[i]}"
+        >{{displayFilterDateType.value}}</div>
+      </div>
+    </div>
+    <p [ngClass]="{'x-global-date': videoChecked}">Max Distance <span>{{distance}}mi</span></p>
+    <div class="custom-slider" *ngIf="!videoChecked">
+      <ng5-slider [(value)]="distance" [options]="options"></ng5-slider>
+    </div>
+    <div class="custom-slider" *ngIf="videoChecked" [ngClass]="{'x-global-date': videoChecked}">
+      <ng5-slider [(value)]="distance" [options]="options2"></ng5-slider>
+    </div>
+
+    <div class="x-level-girl" [hidden]="myProfile.gender.toLowerCase() ==='male'">
+      <!-- <img src="../../../assets/images/discrete_mode_icon3.png" alt="" height="30">
+      <p>Discreet Mode</p>
+      <toggle-button [checked]='checked' (changed)="changeDiscreetMode($event)">
+      </toggle-button> -->
+      <button disabled type="button" class="btn w-100">Xclusive Premium</button>
+    </div>
+
+    <!-- <div class="x-level" [hidden]="myProfile.gender.toLowerCase() !=='male'">
+      <p>Filter Date Types</p>
+      <div class="type-listing">
+        <label class="custom-check" *ngFor="let filterDateType of filterDateTypes; let i = index">
+          {{filterDateType}}
+          <input id="selectFilterDateType" type="checkbox" [(ngModel)]="selectedFilterDateTypesFlag[i]" (change)="onSelectFilterDateTypesChange(selectedFilterDateTypesFlag[i],i)">
+          <span class="checkmark"></span>
+        </label>
+      </div>
+    </div> -->
+  </div>
+  <app-footer></app-footer>
+</div>

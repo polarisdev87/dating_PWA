@@ -1,0 +1,188 @@
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header [title]="title" (backAction)="back()"></app-header>
+<div class="dates-details-wrap" *ngIf="currentPage === 1">
+  
+  <div class="accepted-date" *ngIf='dateDetails != undefined'>
+    <h6>Waiting Approval</h6>
+    <h3>${{dateDetails.preferredDateRate * dateDetails.duration}}</h3>
+    <div class="user-name-detail" *ngIf="maleProfile != undefined"  (click)='maleProfileRedirect()'>
+      <div class="pr-3">
+        <div class="user-img-sec" *ngIf="maleProfile.profileMedia[0]">
+            <div class="blur-bg"
+            [style.backgroundImage]="'url('+ maleProfile.profileMedia[0].mediaURL  +')'"
+            ></div>
+            <img [src]="maleProfile.profileMedia[0].mediaURL" alt="">
+        </div>
+      </div>
+      <div>
+        <h4>{{maleProfile.alias.trim()}}</h4>
+        <p *ngIf="maleProfile.tmplocation">{{maleProfile.tmplocation.city}}, {{maleProfile.tmplocation.state}}</p>
+      </div>
+    </div>
+    <div class="dates-time">
+      <div class="row  tmpDate">
+        <div class="col-7">
+          <p>{{dateDetails.preferredDate}}</p>
+        </div>
+        <div class="col-5">
+            <p>{{dateDetails.tmpDate.day}} {{dateDetails.tmpDate.month}}. {{dateDetails.tmpDate.date}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <p>{{dateDetails.venueName}}</p>
+        </div>
+        <div class="col-5">
+          <p>{{dateDetails.time}}-{{time}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7" (click)='venueLocation()'>
+          <p>{{dateDetails.venueLocation}}</p>
+        </div>
+        <div class="col-5">
+          <p>{{dateDetails.duration}} hrs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-problem">
+    <div  class="accept">
+        <button type="button" class="btn w-100" (click)="acceptDate()">Accept</button>
+
+        <button type="button" class="btn w-100 mt-3 mb-2" (click)="changePage(2)">Decline</button>
+    </div>
+    <div class="block-user">
+        <p class="m-0">Problems or don't know this person? <br> Would you like to</p>
+
+        <button type="button" class="btn w-100 mt-2" (click)="blockUser()">Block</button>
+    </div>
+  </div>
+</div>
+
+<div class="declined-wrap" *ngIf="currentPage === 2">
+  <div class="declined-head" *ngIf="dateDetails">
+      <p>Declined Date with</p>
+      <h5>{{dateDetails.maleUserAlias}}</h5>
+      <p>Declined date with immediately</p>
+      <button type="submit" class="btn w-100 mt-4" (click)="declinedImmediately(false)">DECLINE</button>
+  </div>
+
+  <h5 class="divider">OR</h5>
+
+  <div class="declined-bottom">
+    <form class="decline-form" name="declinedForm" [formGroup]="declinedForm"
+    (submit)="declinedWithReasons(true)">
+    
+    <p>Declined date with reason:</p>
+        <div class="form-group">
+          <label class="custom-radio">Dont like the venue
+            <input type="radio" value="Dont like the venue" formControlName="declinedReason">
+            <span class="checkmark"></span>
+          </label>
+          <label class="custom-radio">Can't make the time and date requested
+            <input type="radio" value="Can’t make the time and date requested" formControlName="declinedReason">
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="form-group lbl-comment">
+            <label>Comments:</label>
+            <textarea class="form-control" rows="3" placeholder="Enter Your Comments" name="comment"
+              formControlName="comment"></textarea>
+          </div>
+          <button type="submit" class="btn w-100 mt-2" >DECLINE WITH REASON</button>
+       
+    </form>
+  </div>
+</div>
+
+
+<div class="confirmDeclined" *ngIf="currentPage === 3">
+    
+      <div class="confirm-date">
+        <div class="user-name-detail" *ngIf="maleProfile != undefined">
+          <div class="confirm-head">
+            <h4>DECLINED</h4>
+            <h5>${{dateDetails.preferredDateRate * dateDetails.duration}}</h5>
+          </div>
+          <div class="confirm-user-prifile">
+              <div class="pr-3">
+                  <div class="user-img-sec" *ngIf="maleProfile.profileMedia[0]">
+                      <div class="blur-bg"
+                      [style.backgroundImage]="'url('+ maleProfile.profileMedia[0].mediaURL  +')'"
+                      ></div>
+                      <img [src]="maleProfile.profileMedia[0].mediaURL" alt="">
+                  </div>
+                </div>
+                <div>
+                  <h4>{{maleProfile.alias.trim()}}</h4>
+                  <p *ngIf="maleProfile.tmplocation">{{maleProfile.tmplocation.city}}, {{maleProfile.tmplocation.state}}</p>
+                </div>
+          </div>
+        </div>
+        <div class="dates-time">
+          <div class="row">
+            <div class="col-6">
+              <p>{{dateDetails.preferredDate}}</p>
+            </div>
+            <div class="col-6">
+                <p>{{dateDetails.tmpDate.day}} {{dateDetails.tmpDate.month}}. {{dateDetails.tmpDate.date}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <p>{{dateDetails.venueName}}</p>
+            </div>
+            <div class="col-6">
+              <p>{{dateDetails.time}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <p>{{dateDetails.venueLocation}}</p>
+            </div>
+            <div class="col-6">
+              <p>{{dateDetails.duration}}hrs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>&nbsp;</div>
+      <div class="report-problem">
+          <p class="m-0">Problems or don't know this person?</p>
+          <p class="mt-0 mb-2">Would you like to</p>
+      
+          <button type="button" class="btn w-100" (click)="blockUser()">Block</button>
+      </div>
+  </div>
+
+  <button #firstTime id="firstTime" style="display: none" class="btn btn-red btn-small" data-toggle="modal" 
+    data-target="#confirmAccept"></button>
+    <div class='modal' #confirmAccept id="confirmAccept" tabindex='-1' role='dialog' aria-hidden='true' data-backdrop="static" data-keyboard="false">
+      <div class='modal-dialog modal-dialog-centered' role='document'>
+        <div class='modal-content'>
+          <div class='modal-body text-center'>
+            <div class='modal-custom-body'>
+                <div class='text-center mb-3' *ngIf=!showMessage>
+                    <img src='../../../assets/icons/success_icn.png' height='45px'/>
+                    <p class='border-pattern sec-header' id='modalTitle'>Accepted date with:</p>
+                    <h5>{{maleProfile.alias}}</h5>
+                </div>
+                <div class='text-center mb-3' *ngIf=showMessage>
+                    <h5>{{acceptMessage}}</h5>
+                </div>
+            </div>
+            <div class='modal-custom-footer' id="modalFooterButton" *ngIf=showMessage>
+                <button type="button" class="btn btn-light" data-dismiss="modal" (click)="dateDeclined()">Done</button>
+            </div>
+            <div class='modal-custom-footer' id="modalFooterButton" *ngIf=!showMessage>
+                <button type="button" id="chat" class="btn btn-light border-right" data-dismiss="modal"  (click)="acceptDone($event,chat)">Chat</button>&nbsp;
+                <button type="button" id="done" class="btn btn-light" data-dismiss="modal"  (click)="acceptDone($event,done)">Done</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

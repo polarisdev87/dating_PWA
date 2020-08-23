@@ -1,0 +1,36 @@
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="invite-friends-wrap">
+    <app-header (backAction)="back()" [title]="title"></app-header>
+
+    <div class="invite-friends-sec">
+        <div class="invite-friends-card">
+            <img src="../../../../assets/images/email-verified.png" alt="">
+            <h3>Invite Your Close Friends! 💛</h3>
+            <h5>Xclusive is “Invite only”, which means the only way we grow is when you invite people you know. All we ask is that you be-mindful who you invite to ensure our platform remains exclusive and low-key! <br> #ThanksBabe 😘            </h5>
+        </div>
+        
+        <div class="invite-friends-share">
+            <button type="button" class="btn w-100" (click)='shareInvite()'>INVITE FRIENDS</button>
+            <h5 *ngIf="!isMale" class="divider">OR</h5>
+            <button *ngIf="!isMale" type="button" class="btn w-100" (click)="redirectToXCode()">SHARE X-CODE</button>
+        </div>
+    
+        <!-- <div *ngIf="!isMale" class="discrete-mode">
+            <div class="discrete-mode-icon">
+                <img src="../../../assets/images/discrete_mode_icon3.png" alt="" height="30">
+                <p>Discreet Mode</p>
+            </div>
+            <div class="discrete-mode-content">
+                <h3>Get More Privacy!</h3>
+                <span>Your profile will be set to private "discreet" mode and can only be found by users with your X-code. At any time you can return to your account settings and switch back to public mode.</span>
+                <h3>1 Week Free Trial!</h3>
+                <span>Xclusive Levels. You'll be able to have access to the other levels where your min & max rates are higher.</span>
+            </div>
+            <div class="discrete-mode-button">
+                <toggle-button [checked]='checked' (changed)="changeDiscreetMode($event)">
+                </toggle-button>
+            </div>
+        </div> -->
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="notifications-wrap">
+  <app-header [leftBtn]='leftBtn' [title]="title" (backAction)="back()"></app-header>
+  <div class="notifications-sec"  *ngFor="let notification of notifications; let i = index">
+    <div class="user-img-sec" (click)='profileRedirect(notification.senderId)'>
+      <div class="blur-bg"
+      [style.backgroundImage]="'url('+ notification.mediaURL +')'"
+      ></div>
+      <img [src]="notification.mediaURL ? notification.mediaURL : '../../../assets/images/image-loader.png'" alt="">
+    </div>
+    <div>
+      <p class="mb-2">{{notification.message}}
+      </p>
+    </div>
+    <div>
+      <h5 (click)="clearNotification(notification.id)">Clear</h5>
+    </div>
+  </div>
+  <div class="container-fluid mt-1" *ngIf="notifications.length == 0">
+    <div class="no-notification">
+      <div class="mb-5">
+        <img src="../../../assets/images/no-data.png" height="100" alt="">
+      </div>
+      <h5>You have no notifications yet, <br/>
+        but that can easily be fixed.</h5>
+    </div>
+  </div>
+</div>

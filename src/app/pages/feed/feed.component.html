@@ -1,0 +1,75 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="feed-page-wraper">
+  <app-header [leftBtn]='leftBtn' [notificationButton]='true' (notificationButtonAction)='notificationCall($event)' [title]="title"  [rgtIcon]="rgtIcon" (rightBtnAction)="right()"></app-header>
+
+  <div class="top-bar" (click)="redirectToXCode()">
+    <button [hidden]="isMale" type="button" class="btn w-100">Share your X-code</button>
+    <button [hidden]="!isMale" type="button" class="btn w-100">Got an X-code? Enter it here.</button>
+  </div>
+
+  <div class="user-info" *ngFor="let feed of feeds">
+    <img class="broker-img" (click)='addDisLikedProfiles(feed)' src="../../../assets/images/broker_heart_icon.png" alt="">
+    <img [hidden]='feed.isFavorite' (click)="addToFavoriate(feed)" class="like-img" src="../../../assets/images/liked_normal.png"
+      alt="">
+    <img [hidden]='!feed.isFavorite' (click)="removeFromFavoriate(feed)" class="like-img" src="../../../assets/images/liked_selected.png"
+      alt="">
+    <ngx-hm-carousel #carousel [autoplay-speed]="speed" [autoplay]="autoplay"
+      [autoplay-direction]="direction" [infinite]="infinite" [between-delay]="2000" [mourse-enable]="true" [data]="feed.profileMedia"
+      [aniTime]="300" class="carousel c-accent">
+      <section ngx-hm-carousel-container class="content">
+        <article class="item cursor-pointer" ngx-hm-carousel-item *ngFor="let avatar of feed.profileMedia">
+          <!-- <div class="img" [style.backgroundImage]="'url('+avatar.mediaURL+')'">
+          </div> -->
+          <div class="img-placeholder-bg">
+            <div class="blur-wrap" [style.backgroundImage]="'url('+avatar.mediaURL+')'"></div>
+            <img class="profile-image" style="filter: blur(0);" [src]="avatar.mediaURL">
+          </div>
+        </article>
+        <ng-template #infiniteContainer></ng-template>
+      </section>
+      <ng-template #carouselContent let-avatar let-i="index">
+        <article class="item cursor-pointer">
+          <div class="img" [style.backgroundImage]="'url('+avatar.mediaURL+')'">
+          </div>
+        </article>
+      </ng-template>
+      <div *ngIf='feed.profileMedia.length > 1'>
+        <ng-template #carouselDot let-model>
+          <div class="ball bg-accent" [class.visible]="model.index === model.currentIndex"></div>
+        </ng-template>
+      </div>
+    </ngx-hm-carousel>
+
+    <div class="p-3" (click)="feedDetail(feed)">
+      <h5>{{feed?.alias.trim()}}, {{currentYear - feed?.age}}
+        <i *ngIf="feed.userStatus" class="fas fa-circle active-user-icon"></i>
+        <i *ngIf="!feed.userStatus" class="far fa-circle active-user-icon"></i>
+        <span [hidden]='!feed.isMale'>{{feed?.bodyType}}</span>
+        <span class="f-span" [hidden]='feed.isMale'>{{feed.dateAndRate ? feed.dateAndRate?.xclusiveLevel : ''}}</span>
+      </h5>
+      
+      <div class="feed-work">
+        <span>{{feed?.work}}</span>
+        <span>{{feed?.height}} <span [hidden]='feed.isMale'> &nbsp;/ {{feed?.bodyType}}</span></span>
+      </div>
+
+      <p>{{feed?.zodiacSign}} <label class="zodiacSign">{{feed.zodiacSignIcon}}</label> 
+      <span>
+      <img *ngIf="feed.upthumbImage" src="../../../assets/images/rate_thumbsUp_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px">  
+      <img *ngIf="feed.downthumbImage" src="../../../assets/images/rate_thumbsDown_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px"> 
+      &nbsp;&nbsp;{{feed.ratingPercentageString}} {{feed.distance}} mi
+    </span></p>
+    </div>
+  </div>
+
+  <div class="container-fluid mt-1" *ngIf="feeds.length == 0 && showBlankScreen">
+    <div class="no-feed">
+      <div class="mb-5">
+        <img src="../../../assets/images/no-data.png" height="100" alt="">
+      </div>
+      <h5>You have no feeds right now.</h5>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+</div>

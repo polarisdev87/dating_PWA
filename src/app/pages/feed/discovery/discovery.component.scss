@@ -1,0 +1,241 @@
+.discovery-page-wraper {
+  .discovery-sec {
+
+    P,
+    h6 {
+      color: #EDC228;
+      padding: 15px;
+      margin: 0;
+
+      span {
+        color: #fff;
+        float: right;
+      }
+    }
+
+    .x-level {
+      color: #E2D291;
+
+      .x-level-inner {
+        background: #242424;
+        padding: 10px;
+        display: flex;
+
+        div {
+          flex-grow: 1;
+          text-align: center;
+          padding: 4px;
+          font-size: 12px;
+          border: 1px solid #E2D291;
+
+          &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+        }
+
+        .x-level-active {
+          background: #E2D291;
+          color: #242424;
+        }
+      }
+    }
+
+    .x-level-girl {
+      text-align: center;
+      padding: 20px 40px;
+
+      p {
+        color: #fff;
+        padding: 0;
+      }
+    }
+
+    .x-type {
+      color: #E2D291;
+
+      .x-type-inner {
+        background: #242424;
+        padding: 10px;
+        display: flex;
+
+        div {
+          flex-grow: 1;
+          text-align: center;
+          padding: 4px;
+          font-size: 12px;
+          border: 1px solid #E2D291;
+
+          &:first-child {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+          }
+
+          &:last-child {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+          }
+        }
+
+        .x-type-active {
+          background: #E2D291;
+          color: #242424;
+        }
+      }
+    }
+
+    .x-global-date{
+      color: grey;
+      cursor: not-allowed;
+      p{
+        color: grey;
+      }
+
+      span{
+        color: grey;
+      }
+
+      .x-type-inner {
+
+        div {
+          border: 1px solid grey;
+        }
+
+        .x-type-active {
+          background: grey;
+        }
+      }
+    }
+
+    .x-global {
+      color: #EDC228;
+      padding: 15px;
+
+      toggle-button {
+        float: right;
+        margin-top: -2px;
+      } 
+    }
+  }
+  .type-listing {
+    margin-bottom: 61px;
+
+    .custom-check {
+      display: block;
+      position: relative;
+      padding: 15px;
+      margin-bottom: 0;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      color: #fff;
+      border-bottom: 1px solid #fff;
+    }
+
+    .custom-check input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    .checkmark {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      background-color: transparent;
+      border: 1px solid #fff;
+    }
+
+    .custom-check input:checked~.checkmark {
+      background-color: #EDC228;
+    }
+  }
+}
+
+::ng-deep {
+  .custom-slider {
+    padding: 15px;
+    background: #242424;
+
+    .ng5-slider {
+      margin: 0;
+    }
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bar {
+    background: #fff;
+    height: 2px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-selection {
+    background: #EDC228;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer {
+    width: 25px;
+    height: 25px;
+    top: auto;
+    bottom: -9px;
+    background-color: #fff;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-pointer:after {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-bubble {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-limit {
+    display: none;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick {
+    width: 1px;
+    height: 10px;
+    margin-left: 4px;
+    border-radius: 0;
+    background: #ffe4d1;
+    top: -1px;
+  }
+
+  .custom-slider .ng5-slider .ng5-slider-tick.ng5-slider-selected {
+    background: orange;
+  }
+
+  .x-global-date .ng5-slider .ng5-slider-bar {
+    background: grey;
+  }
+
+  .x-global-date .ng5-slider .ng5-slider-pointer {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+
+  .x-global-date .ng5-slider .ng5-slider-tick {
+    background: grey;
+  }
+
+  .x-global-date .ng5-slider .ng5-slider-selection {
+    background: grey;
+  }
+}

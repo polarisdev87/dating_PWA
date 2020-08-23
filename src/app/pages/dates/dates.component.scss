@@ -1,0 +1,39 @@
+.dates-wrap {
+  padding-bottom: 50px;
+}
+
+.mt-10 {
+  margin-top: 6rem !important
+}
+
+.no-date{
+  height: calc(100vh - 115px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  h5{
+    color: #EDC228;
+    font-size: 16px;
+    margin-bottom: 15rem;
+  }
+}
+.isVideoChatCard{
+  background-color: #EDC228 !important;
+  p{
+    color: #131313;
+  }
+  label{
+    color: #131313;
+  }
+  span{
+    color: #131313;
+  }
+  h5{
+    color: #131313;
+  }
+  i{
+    color: #131313;
+  }
+}

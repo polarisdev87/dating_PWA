@@ -1,0 +1,109 @@
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div *ngIf="isMale" class="x-code-wrap" style="background-image:url('../../../assets/images/x_code_bg.png');">
+
+    <div class="x-code-sec">
+        <div class="text-right p-3" (click)="back()">
+            <img src="../../../assets/images/large_white_x_icon.png" alt="" height="25">
+        </div>
+
+        <div style="padding: 15px 13%;">
+            <div class="text-center mb-5">
+                <label class="mb-5" *ngIf="!xCodeInputText && !xCodeInvalid">Enter X-Code</label>
+                <label class="mb-5" *ngIf="xCodeInputText && !xCodeInvalid">{{xCodeInputText}}</label>
+                <label class="mb-5" style="color: #f00;" *ngIf="xCodeInvalid">X-Code invalid! Try Again</label>
+            </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('1')">1</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('2')">2</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('3')">3</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('4')">4</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('5')">5</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('6')">6</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('7')">7</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('8')">8</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('9')">9</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4"></div>
+                <div class="col-4 text-center mb-4">
+                    <div class="number-sec">
+                        <button type="button" class="number-inner" (click)="dialCode('0')">0</button>
+                    </div>
+                </div>
+                <div class="col-4 text-center mb-4">
+                    <img *ngIf="xCodeInputText" src="../../../assets/images/xcode-back-icon.png" (click)="removeDial()" style="height: 30px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="!isMale" class="x-code-female-warp">
+    <app-header (backAction)="back()" [title]="title"></app-header>
+
+    <div class="x-code-sec">
+        <div class="x-code-form">
+            <div class="text-center p-3">
+                <img src="../../../assets/images/nav_feed_active.png" alt="">
+            </div>
+            <div class="text-center p-3">
+                <span style="color: #EDC228;">Share your X-code</span>
+            </div>
+            <div class="form-group x-code-form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">+1</span>
+                    </div>
+                    <input type="number" maxlength="10" class="form-control"
+                        placeholder="Enter SMS Number" autocomplete="off" [(ngModel)]="xCodePhoneNumber">
+                    <button type="button" class="btn" (click)="sendXcodeSMS()">SEND</button>
+                </div>
+            </div>
+            <div class="form-group x-code-form-group">
+                <div class="input-group">
+                    <input id="profileUrl" type="text" class="form-control" [(ngModel)]="profileUrl" [disabled]="true" [readOnly]="'true'">
+                    <button type="button" class="btn" (click)="copyToClipart('profileUrl')">COPY</button>
+                </div>
+            </div>
+            <hr>
+            <span style="color: #EDC228;">Whether you meet in person, through social media, or on another dating app –
+                only connect through your personalized Xcode. Never share your cell-phone number or personal information
+                again.</span>
+        </div>
+    </div>
+</div>

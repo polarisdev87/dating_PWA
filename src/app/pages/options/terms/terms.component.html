@@ -1,0 +1,20 @@
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes" />
+<app-header [leftBtn]='leftBtn' (backAction)="back()" [title]="title"></app-header>
+<div [hidden]='isAgrredDiv' class="row m-0 justify-content-center">
+    <div class="col-md-8 text-center mb-5 mt-5">
+        <img src="../../../assets/images/logo/xclusive_logo.png" height="70" alt="" />
+    </div>
+</div>
+<div [hidden]="isPDf" class="masked"></div>
+<pdf-viewer (text-layer-rendered)="pdfUploaded()" [src]="pdf" [render-text]="true" style="display: block;background-color:#ffffff85" [autoresize]="true"
+    [original-size]="false"></pdf-viewer>
+<div [hidden]='isAgrredDiv' class='agrreBottom'>
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <label class="custom-check">
+            <input id="selectAgrred" type="checkbox" [(ngModel)]="isAgrred">
+            <span class="checkmark"></span>
+        </label>
+        <button type="button" (click)="agree()" id="agree" class="btn">AGREE</button>
+    </div>
+</div>

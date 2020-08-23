@@ -1,0 +1,86 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+
+<div class="video-chat-wrap-bg" [style.backgroundImage]="bgImage" *ngIf="!isVideoStart">
+  <div class="video-chat-sec-bg">
+    <div class="video-chat-head">
+      <div class="header">
+        <i class="fas fa-chevron-left" (click)="back()"></i>
+      </div>
+      <div class="video-form">
+        <div class="title">Join</div>
+        <p>Date with : {{otherUserProfile ? otherUserProfile.alias : ''}}</p>
+        <form name="videoChatForm" [formGroup]="videoChatForm">
+          <div class="report-field">
+            <div class="form-group">
+              <input type="text" id="meetingId" class="form-control" formControlName="meetingId" name="meetingId"
+                placeholder="Enter Meeting ID Number">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="timeCounter" [hidden]="!isOngoingDate">
+        <ng-container>
+          <div class="timer">
+            <app-clock [time]="checkInTime" [duration]="dateHour" (timeout)="timeFinish($event)"></app-clock>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="video-chat-btm">
+      <button type="button" class="btn w-100" (click)="startVideoChat()">Start Video Chat</button>
+    </div>
+  </div>
+</div>
+<!-- Video Join Room -->
+<div *ngIf="isVideoStart" class="video-chat-join">
+  <div class="VideoChatTag" >
+    <!-- <div class="start-video-title">
+      <i class="fas fa-circle" [ngClass]="{'connecting' : connectionType === 'connecting',
+       'connected' : connectionType === 'connected', 
+      'disconnected' : connectionType === 'disconnected' }"><span>{{connectionMessage}}</span></i>
+    </div> -->
+    <div class="partner-container" [style.height.px]="videoHeight" [hidden]="!isEnabled">
+      <!-- <div class="start-video-title"><span>{{connectionMessage}}</span></div> -->
+    </div>
+    <div class="partner-blank-preview" [style.height.px]="videoHeight" *ngIf="!isEnabled">
+      <!-- <i class="fas" [ngClass]="{'fa-expand' : !isLocalPreview, 'fa-compress' : isLocalPreview}" (click)="changeLocalPerview()"><span [hidden]="!isLocalPreview">Preview mode</span></i> -->
+      <!-- <div class="start-video-title"><span>You</span></div> -->
+    </div>
+    <!-- <div class="self-container"> -->
+      <div class="local-preview" [style.height.px]="videoHeight" [hidden]="!isWebcam">
+        <!-- <i class="fas" [ngClass]="{'fa-expand' : !isLocalPreview, 'fa-compress' : isLocalPreview}" (click)="changeLocalPerview()"><span [hidden]="!isLocalPreview">Preview mode</span></i> -->
+        <!-- <div class="start-video-title"><span>You</span></div> -->
+      </div>
+      <div class="blank-preview" [style.height.px]="videoHeight" *ngIf="!isWebcam">
+        <!-- <i class="fas" [ngClass]="{'fa-expand' : !isLocalPreview, 'fa-compress' : isLocalPreview}" (click)="changeLocalPerview()"><span [hidden]="!isLocalPreview">Preview mode</span></i> -->
+        <!-- <div class="start-video-title"><span>You</span></div> -->
+      </div>
+    <!-- </div> -->
+    <div class="footer">
+      <div class="header">
+        <!-- <i class="fas fa-chevron-left" (click)="backToJoinVideo()"></i> -->
+        <div class="timeCounter" [hidden]="!isOngoingDate">
+          <ng-container>
+            <div class="timer">
+              <app-clock [time]="checkInTime" [duration]="dateHour" (timeout)="timeFinish($event)"></app-clock>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="video-join-bottom">
+        <div class="display-button">
+          <i class="fas" [ngClass]="{'fa-video' : isWebcam, 'fa-video-slash' : !isWebcam}" (click)="changeWebCam()"></i>
+        </div>
+        <div class="display-button">
+          <i class="fas fa-phone-slash" (click)="stopVideoChat()"></i>
+        </div>
+        <div class="display-button">
+          <i class="fas" [ngClass]="{'fa-microphone' : isVolume, 'fa-microphone-slash' : !isVolume}" (click)="changeMute()"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="video-chat-btm" *ngIf="isVideoStart && isVideoDisplay">
+  <button type="button" class="btn w-100" (click)="stopVideoChat()">Stop Video Chat</button>
+</div> -->

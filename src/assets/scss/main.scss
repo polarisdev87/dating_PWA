@@ -1,0 +1,14 @@
+@import 'modules/color';
+@import 'modules/variable';
+@import 'modules/font';
+@import 'modules/button';
+@import 'modules/main-content';
+@import '~css-star-rating/scss/star-rating';
+
+.star-container {
+  margin: 0;
+}
+
+.rating.color-ok .star-container .star svg {
+  fill: #EDC228 !important;
+}

@@ -1,0 +1,32 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header [leftBtn]='leftBtn' (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+<div class="interest-wrap" [hidden]="!isMyInterestScreen">
+  <div class="interest-wrap_des">
+    Select the interest that you would like to highlight on your personal profile. You can be as broad or as specific as you like.
+  </div>
+  <div class="interest-wrap_title">
+    <h5>Add your Interests
+      <img id="selectInterest" class="add-img close-btn" src="../../../../assets/images/plus.png" alt=""
+        (click)="selectInterest()">
+    </h5>
+  </div>
+  <div class="interest-wrap_selected">
+    <h6>MY INTERESTS</h6>
+    <label *ngFor="let flag of selectedInterestsFlag; let i = index" [hidden]="!flag">
+      {{interests[i]}}
+      <img id="removeInterest" class="remove-img close-btn" src="../../../../assets/images/x-button-black.png" alt="" (click)="removeInterest(i)">
+    </label>
+  </div>
+</div>
+<div class="interest-list-wrap" [hidden]="isMyInterestScreen">
+  <div class="interest-wrap_des">
+    <span>You can select maximum 10 interest.</span> <span class="float-right">{{selectedInterestsCounts}}/10</span>
+  </div>
+  <div class="interest-listing">
+    <label class="custom-check" *ngFor="let interest of interests; let i = index">
+      {{interest}}
+      <input id="selectInterest" type="checkbox" [(ngModel)]="selectedInterestsFlag[i]" (change)="onSelectInterestsChange(selectedInterestsFlag[i])">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+</div>

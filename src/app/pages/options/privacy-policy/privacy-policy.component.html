@@ -1,0 +1,4 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes"/>
+<app-header (backAction)="back()" [title]="title"></app-header>
+<div [hidden]="isPDf" class="masked"></div>
+<pdf-viewer (text-layer-rendered)="pdfUploaded()" [src]="pdf" [render-text]="true" style="background-color: black;display: block" [autoresize]="true" [original-size]="false"></pdf-viewer>

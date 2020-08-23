@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header [title]="title" (backAction)="back()" ></app-header>
+<div class="time-comment">
+  <h4>How did your date go?</h4>
+  <img class="img-thumbsup" *ngIf="!likeDateIcone" src="../../../assets/images/rate_thumbsUp_normal.png" alt="" (click)="likeDate()">
+  <img class="img-thumbsup" *ngIf="likeDateIcone" src="../../../assets/images/rate_thumbsUp_active.png" alt="">
+  <img class="img-thumbsdown" *ngIf="!dislikeDateIcone" src="../../../assets/images/rate_thumbsDown_normal.png" alt="" (click)="dislikeDate()">
+  <img class="img-thumbsdown" *ngIf="dislikeDateIcone" src="../../../assets/images/rate_thumbsDown_active.png" alt="">
+
+  <div *ngIf="dislike" class="comment-content">
+    <form class="dateher-sec" name="commentForm" [formGroup]="commentForm" (submit)="submitComment()"
+      #myform="ngForm">
+      <div class="form-group">
+        <p>We are sorry to hear your date did not go well. 
+           Help us improve future user experiences! 
+           Is there anything we can do on our end to help?
+        </p>
+        <textarea #comment class="form-control" rows="5" id="comment" formControlName="comment" name="comment"
+          placeholder="Enter your comment"></textarea>
+          <div class="txt-count">{{commentForm.value.comment.length}}/300</div>
+      </div>
+      <button type="submit" class="btn w-100">SUBMIT MY COMMENT</button>
+
+    </form>
+
+  </div>
+  <div class="timeCounter-feedback" *ngIf="feedBackSend">
+    <h4>Your feedback has been sent!</h4>
+    <p>We value your feedback and we will do everything we can to help improve your future dates.</p>
+  </div>
+</div>
+
+
+
+

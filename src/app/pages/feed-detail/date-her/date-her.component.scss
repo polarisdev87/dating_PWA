@@ -1,0 +1,461 @@
+body {
+  padding-top: 0;
+}
+
+.border-img {
+  border: 2px solid #EDC228;
+}
+
+.date-border {
+  border: 1px solid #EDC228;
+}
+
+.txt-count{
+  text-align: end;
+  color: #EDC228;
+  font-size: 13px;
+}
+
+.date-her-wrap-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  padding: 15px;
+
+  .dateher-sec-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    h1 {
+      color: #EDC228;
+      text-align: center;
+    }
+
+    h2 {
+      color: #fff;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    label {
+      border: 1px solid #fff;
+      border-radius: 30px;
+      color: #fff;
+      background: #000;
+      padding: 10px 20px;
+      position: relative;
+      font-size: 15px;
+      margin-bottom: 25px;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .active {
+      border: 1px solid #EDC228 !important;
+    }
+  }
+}
+
+.date-her-wrap {
+  padding: 15px;
+  height: 100%;
+
+  .dateher-sec {
+    height: 100%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      color: #fff;
+      text-align: center;
+      font-size: 25px;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+
+    h5 {
+      color: #EDC228;
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+
+      span {
+        background-color: #EDC228;
+        color: #000;
+        padding: 2px 6px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 30px;
+
+      label {
+        color: #EDC228;
+      }
+    }
+
+    .form-control {
+      text-align: left;
+    }
+
+    .dateher-custom-radio {
+      display: inline-block;
+      position: relative;
+      margin-bottom: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      width: 80px;
+      height: 30px;
+      margin-right: 10px;
+      text-align: center;
+
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+
+        &:checked {
+          ~.checkmark {
+            border: 1px solid #EDC228;
+
+            &::after {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 30px;
+        width: 100%;
+        line-height: 28px;
+        background-color: #131313;
+        border: 1px solid #fff;
+        color: #fff;
+        font-size: 13px;
+      }
+    }
+
+    .restaurant-wrap {
+      height: calc(100vh - 70px);
+      overflow: auto;
+    }
+
+    .restaurant-detail {
+      background-color: #131313;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      >div {
+        overflow: hidden;
+
+        &:first-child {
+          max-width: 110px;
+          flex: 0 0 110px;
+        }
+
+        img {
+          height: 120px;
+          width: 110px;
+        }
+
+        &:last-child {
+          flex-grow: 1;
+          padding: 10px 15px;
+        }
+      }
+
+
+      h4 {
+        font-size: 14px;
+        font-weight: 500;
+        margin: 0;
+        text-transform: capitalize;
+        text-align: left;
+        margin-bottom: 5px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      p {
+        margin: 0;
+        font-size: 13px;
+      }
+
+      .ratting-sec {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  input[type="date"]:before {
+    color: #EDC228;
+    content: attr(placeholder) !important;
+    margin-right: 0.5em;
+    margin-left: 25px;
+  }
+
+  input[type=date]::-webkit-datetime-edit-text {
+    -webkit-appearance: none;
+    display: none;
+  }
+
+  input[type=date]::-webkit-datetime-edit-month-field {
+    -webkit-appearance: none;
+    display: none;
+  }
+
+  input[type=date]::-webkit-datetime-edit-day-field {
+    -webkit-appearance: none;
+    display: none;
+  }
+
+  input[type=date]::-webkit-datetime-edit-year-field {
+    -webkit-appearance: none;
+    display: none;
+  }
+
+  input[type=date]:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+  }
+
+  input[type=date]:focus::-webkit-datetime-edit {
+    color: #EDC228 !important;
+  }
+
+  input[type="date"] {
+    position: relative;
+    color: transparent;
+    border-bottom: 1px solid #EDC228;
+    display: flex;
+  }
+
+  input[type="date"]:after {
+    font-family: "Font Awesome 5 Free";
+    content: "\f274";
+    color: #fff;
+    position: absolute;
+  }
+
+  /* change color of symbol on hover */
+  input[type="date"]:hover:after {
+    color: #EDC228;
+  }
+
+  /* make the native arrow invisible and stretch it over the whole field so you can click anywhere in the input field to trigger the native datepicker*/
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+  }
+
+  /* adjust increase/decrease button */
+  input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+  }
+
+  /* adjust clear button */
+  input[type="date"]::-webkit-clear-button {
+    z-index: 1;
+  }
+}
+
+.confirm-date {
+
+  .user-name-detail {
+    color: #fff;
+    border-bottom: 1px solid #ababab;
+    padding: 15px;
+    background: #131313;
+
+    >p {
+      color: #EDC228;
+      text-align: center !important;
+    }
+
+    .user-img {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+    }
+
+    h4 {
+      text-align: left;
+      font-size: 16px;
+      margin: 0;
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+
+  .dates-time {
+    color: #fff;
+    padding: 15px;
+    background: #131313;
+    margin-bottom: 10px;
+
+    p {
+      margin: 0;
+    }
+
+    .tmpDate {
+      text-transform: uppercase;
+    }
+  }
+}
+
+.invite-her {
+  h4 {
+    margin-bottom: 10px !important;
+  }
+
+  h5 {
+    color: #fff !important;
+  }
+
+  .btn-close {
+    background: transparent;
+    border: none;
+  }
+}
+
+.custom-date-picker {
+  background: #131313;
+  padding: 10px;
+  color: #EDC228;
+  overflow: auto;
+  position: absolute;
+  z-index: 9;
+
+  .right-border{
+    border-right : solid 1px;
+    border-color :  #EDC228;
+  }
+
+  .month-header {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+
+    >div {
+      flex: 0 0 100%;
+      max-width: 100%;
+      text-align: center;
+      padding: 10px;
+    }
+  }
+
+  .week-header {
+    display: flex;
+    text-align: center;
+    font-size: 13px;
+    // position: sticky;
+    width: 100%;
+    left: 0;
+    right: 0;
+
+    >div {
+      flex-grow: 1;
+      padding: 10px;
+    }
+  }
+
+  .days {
+    display: flex;
+
+    .past-date {
+      cursor: none !important;
+      background-color: #272424;
+    }
+
+    .months {
+      display: flex;
+      text-align: center;
+      color: #fff;
+      flex-wrap: wrap;
+      font-size: 13px;
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      >div {
+        flex: 0 0 14.28%;
+        max-width: 14.28%;
+        padding: 10px;
+        cursor: pointer;
+      }
+    }
+
+    .week {
+      display: flex;
+      text-align: center;
+      color: #EDC228;
+      flex-wrap: wrap;
+      font-size: 13px;
+      flex: 0 0 100%;
+      max-width: 100%;
+
+      >div {
+        flex: 0 0 14.28%;
+        max-width: 14.28%;
+        padding: 10px;
+      }
+    }
+  }
+}
+
+.user-img-sec {
+  height: 60px;
+  width: 60px;
+  margin-right: 15px;
+  border-radius: 50%;
+  flex: 0 0 60px;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  .blur-bg {
+    filter: blur(10px);
+    position: absolute;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+  }
+  img {
+    height: 100%;
+    width: auto;
+    filter: blur(0);
+    background-color: black;
+    max-width: 100%;
+  }
+}

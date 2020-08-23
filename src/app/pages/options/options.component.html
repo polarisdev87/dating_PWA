@@ -1,0 +1,38 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header (backAction)="back()" [title]="title"></app-header>
+<div class="options-wrap">
+  <div class="options-sec">
+    <h5>Account</h5>
+    <ul>
+      <li class="toggleBtnLink" *ngIf="currentUser?.gender?.toLowerCase() === 'female'">Discrete Mode<toggle-button [checked]='checked' (changed)="changeDiscreetMode($event)">
+      </toggle-button></li>
+      <li routerLink="profile">Edit Profile <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="interest">My Interests <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="verification">Verifications <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="preferred-dates" [hidden]="currentUser?.gender?.toLowerCase() === 'male'">Preferred Dates & Rates
+        <i class="fas fa-chevron-right"></i></li>
+      <li *ngIf="currentUser?.gender?.toLowerCase() === 'male'" routerLink="payment">Payment Options
+          <i class="fas fa-chevron-right"></i></li>
+      <li *ngIf="currentUser?.gender?.toLowerCase() === 'female'" routerLink="female-account">Payout Options
+            <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="transaction">Recent Transactions <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="blocked-profile">Blocked Profiles <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="invite-friends">Invite Friends <i class="fas fa-chevron-right"></i></li>
+    </ul>
+  </div>
+  <div class="options-sec">
+    <h5>Support</h5>
+    <ul>
+      <li routerLink="problem">Report A Problem <i class="fas fa-chevron-right"></i></li>
+    </ul>
+  </div>
+  <div class="options-sec">
+    <h5>Legal</h5>
+    <ul>
+      <li routerLink="guide">Community and Guidelines <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="privacy-policy">Privacy Policy <i class="fas fa-chevron-right"></i></li>
+      <li routerLink="terms">Terms of Use <i class="fas fa-chevron-right"></i></li>
+    </ul>
+  </div>
+  <button class="btn w-100" type="button" (click)='logout()'>Logout</button>
+</div>

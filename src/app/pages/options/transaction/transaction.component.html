@@ -1,0 +1,40 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="transaction-wrap">
+  <app-header (backAction)="back()" [title]="title"></app-header>
+
+  <!-- Nav pills -->
+<!-- <ul class="nav nav-pills nav-justified">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="pill" href="#date">DATES</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="pill" href="#transfers">TRANSFERS</a>
+  </li>
+</ul> -->
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane container active" id="date">
+    <div class="transaction-sec" *ngFor="let transaction of transactions">
+      <div class="mr-2">{{transaction.timestamp | date:'shortDate'}}</div>
+      <div class="flex-grow-1">{{transaction.description}}</div>
+      <div class="ml-2">${{transaction.amount | number:'1.2-2' }}</div>
+    </div>
+  </div>
+  <!-- <div class="tab-pane container fade" id="transfers">
+    <div class="transaction-sec">
+      <div class="mr-2">04/04/19</div>
+      <div class="flex-grow-1">Date fees charged for dinner with juhi - 2hrs</div>
+      <div class="ml-2">$100.0</div>
+    </div>
+  
+    <div class="transaction-sec">
+      <div class="mr-2">04/04/19</div>
+      <div class="flex-grow-1">Date fees charged for dinner with juhi - 2hrs</div>
+      <div class="ml-2">$100.0</div>
+    </div>
+  </div> -->
+</div>
+
+  
+</div>

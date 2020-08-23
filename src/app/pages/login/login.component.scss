@@ -1,0 +1,25 @@
+/* Insert here your CSS */
+.login-wrap { 
+    position: fixed;width: 100%; 
+
+    .google-btn {
+        background-color: #fff;
+        border-radius: 0;
+        color: #000;
+        text-transform: capitalize;
+        font-weight: 400;
+
+        span {
+            float: left;
+            margin-left: -4px;
+        }
+
+        span.icon {
+            background: url('https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+            display: inline-block;
+            vertical-align: middle;
+            width: 30px;
+            height: 25px;
+        }
+    }
+}

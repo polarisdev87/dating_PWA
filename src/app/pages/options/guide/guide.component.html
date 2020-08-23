@@ -1,0 +1,18 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="guide-wrap">
+  <app-header (backAction)="back()" [title]="title"></app-header>
+  <div class="guide-accordions" *ngFor="let guide of guidelines; let i = index">
+    <div id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn-collapse" data-toggle="collapse" [attr.data-target]="'#guide'+i" aria-expanded="true"
+          (click)="changeIcon(i)" aria-controls="collapseOne">
+          {{guide.Title}}
+          <i class="fas fa-chevron-down" id="downArrow{{i}}"></i>
+        </button>
+      </h5>
+    </div>
+    <div id="guide{{i}}" class="collapse guide-accordions-des" aria-labelledby="headingOne" data-parent="#accordion">
+      {{guide.Content}}
+    </div>
+  </div>
+</div>

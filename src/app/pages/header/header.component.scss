@@ -1,0 +1,102 @@
+.header-wraper {
+  background-color: #131313;
+  padding: 15px;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9;
+
+  .title {
+    margin: 0;
+    font-size: 16px;
+    color: #EDC228;
+    font-weight: 600;
+  }
+
+  .left-btn {
+    color: #EDC228;
+    float: left;
+  }
+
+  .rgtBtn {
+    float: right;
+    margin-top: -22px;
+    font-weight: 400;
+    font-size: 14px;
+    position: relative;
+    color: #EDC228;
+
+    select {
+      position: absolute;
+      right: 0;
+      background-color: transparent;
+      border: 0;
+      outline: 0;
+      color: #EDC228;
+      font-size: 14px;
+      font-weight: 600;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background: url('../../../assets/images/Down.png') no-repeat right;
+      background-size: 20px;
+      width: auto;
+      padding: 0px 15px;
+
+      &:focus {
+        outline: none;
+      }
+
+      option {
+        background: #242424;
+        color: #fff;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    .btn-select {
+      color: #EDC228;
+      padding: 0;
+      background: transparent;
+      font-size: 14px;
+      font-weight: 400;
+      text-transform: capitalize; 
+    }
+
+    .dropdown-menu {
+      background: #242424;
+        color: #fff;
+        padding: 0;
+        border-radius: 0;
+
+        .dropdown-item {
+          padding: .25rem 1rem;
+          font-size: 14px;
+        }
+    }
+  }
+}
+
+.mr-2-5 {
+  margin-right: 2.5rem;
+}
+
+.active-user-icon{
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.notification-active {
+  font-size: 8px;
+    top: 16px;
+    position: absolute;
+}
+
+.earning {
+  font-size: 16px !important;
+}

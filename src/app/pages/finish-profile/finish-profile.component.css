@@ -1,0 +1,7 @@
+.my-profile-wrap .user-details {
+    height: calc(100vh - 115px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

@@ -1,0 +1,152 @@
+<meta name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="my-profile-wrap feed-detail-wrap">
+  <app-header [leftBtn]='leftBtn' [title]="title" [rgtIcon]="rgtIcon" (rightBtnAction)="right()">
+  </app-header>
+  <div *ngIf="feedUser != undefined">
+    <ngx-hm-carousel #carousel [(ngModel)]="index" [autoplay-speed]="speed" [autoplay]="autoplay"
+      [autoplay-direction]="direction" [infinite]="infinite" [between-delay]="2000" [mourse-enable]="true"
+      [data]="avatars" [aniTime]="300" class="carousel c-accent">
+
+      <section ngx-hm-carousel-container class="content">
+        <article class="item cursor-pointer" ngx-hm-carousel-item *ngFor="let avatar of feedUser.profileMedia">
+          <!-- <div class="img" [style.backgroundImage]="'url('+avatar.url+')'">
+          </div> -->
+          <div class="img-placeholder-bg">
+            <div class="blur-wrap" [style.backgroundImage]="'url('+avatar.mediaURL+')'"></div>
+            <img class="profile-image" style="filter: blur(0);" [src]="avatar.mediaURL">
+          </div>
+        </article>
+        <ng-template #infiniteContainer></ng-template>
+      </section>
+      <ng-template #carouselContent let-avatar let-i="index">
+        <article class="item cursor-pointer">
+          <div class="img" [style.backgroundImage]="'url('+avatar.url+')'">
+          </div>
+        </article>
+      </ng-template>
+      <div *ngIf='feedUser.profileMedia.length > 1'>
+        <ng-template #carouselDot let-model>
+          <div class="ball bg-accent" [class.visible]="model.index === model.currentIndex"></div>
+        </ng-template>
+      </div>
+    </ngx-hm-carousel>
+
+    <div class="user-info">
+      <h5>{{feedUser.alias.trim()}}, {{currentYear - feedUser.age}}
+        <i *ngIf="feedUserStatus" class="fas fa-circle active-user-icon"></i>
+        <i *ngIf="!feedUserStatus" class="far fa-circle active-user-icon"></i>
+        <span [hidden]='!feedUser.isMale'>{{feedUser.bodyType}}</span>
+        <span class="f-span" [hidden]='feedUser.isMale'>{{feedUser.dateAndRate ? feedUser.dateAndRate.xclusiveLevel :
+          ''}}</span>
+      </h5>
+      <div class="feed-work">
+          <span>{{feedUser?.work}}</span>
+          <span>{{feedUser?.height}} <span [hidden]='feedUser.isMale'> &nbsp;/ {{feedUser?.bodyType}}</span></span>
+      </div>
+      <p>{{feedUser.zodiacSign}} <label class="zodiacSign">{{feedUser.zodiacSignIcon}}</label>
+        <span>
+            <img *ngIf="feedUser.upthumbImage" src="../../../assets/images/rate_thumbsUp_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px">  
+            <img *ngIf="feedUser.downthumbImage" src="../../../assets/images/rate_thumbsDown_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px"> 
+          &nbsp;&nbsp;{{feedUser.ratingPercentageString}} {{feedUser.distance}} mi</span></p>
+    </div>
+
+    <div class="user-details">
+      <h5>Location</h5>
+      <p class="mb-1">{{feedUser.location}}</p>
+      <p class="mb-4">{{feedUser.distance}} mi</p>
+
+      <h5>About Me</h5>
+      <p>{{feedUser.aboutMe}}</p>
+    </div>
+
+    <div class="preferred-dates" [hidden]='feedUser.isMale'>
+      <h5>Preferred Dates</h5>
+      <div class="dates-sec">
+        <div>
+          <p>Dinner</p>
+          <p>
+            {{feedUser.dateAndRate? feedUser.dateAndRate.preferredDate.Dinner?
+            '$'+feedUser.dateAndRate.preferredDate.Dinner+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <div>
+          <p>Cocktails</p>
+          <p>
+            {{feedUser.dateAndRate? feedUser.dateAndRate.preferredDate.Cocktails?
+            '$'+feedUser.dateAndRate.preferredDate.Cocktails+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <div>
+          <p>Special Event</p>
+          <p>
+            {{feedUser.dateAndRate? feedUser.dateAndRate.preferredDate['Special Event']?
+            '$'+feedUser.dateAndRate.preferredDate['Special Event']+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <!-- Video Chat -->
+        <div>
+          <p>Video Chat</p>
+          <p>
+            {{feedUser.dateAndRate? feedUser.dateAndRate.preferredDate['Video Chat']?
+            '$'+feedUser.dateAndRate.preferredDate['Video Chat']+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="interests" [hidden]="!feedUser.interests">
+      <h5>interests</h5>
+      <label *ngFor="let interest of feedUser.interests; let i = index">{{interest}}</label>
+    </div>
+
+    <div class="verified" *ngIf="verify != undefined">
+      <h5>verified</h5>
+      <div class="row">
+        <div class="col-3">
+          <img [src]="verify.google" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.id" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.email" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.phone" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="interests" [hidden]='feedUser.isMale'>
+      <h5>Need to know</h5>
+      <ul>
+        <li>
+          By booking, you agree to Xclusive’s Terms, Conditions, and Privacy Policy. Engaging in illegal commercial
+          activities (such as prostitution) is prohibited. Xclusive is not an Escort Service.
+        </li>
+        <li>
+          Must be at least 21 years of age for Cocktail dates, and/or for any dates involving alcohol consumption.
+        </li>
+        <li>
+          We pre-authorize the No Show No Pay fee prior to the date. Payment for the date will not be processed until
+          the date is accepted. Booking transactions will appear discrete on your bank statement as Spread Corp. The
+          No-Show No-Pay fee is non-refundable.
+        </li>
+        <li>
+          No Show - No Pay Policy: If she does not appear without cancelling you will receive a full refund for the
+          date. If you do not appear without cancelling you will still be charged for the full amount of the date.
+          Cancellations will not be allowed within 24hrs of the date time by either party.
+        </li>
+        <li>
+          Expenses accumulated during the date are separate from any fees while booking on Xclusive. Date expenses must
+          be worked out between both parties at the venue. Xclusive is not responsible for any date expenses.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="msg-him">
+    <button type="button" class="btn w-100" (click)="dateHer()">Date Her</button>
+  </div>
+</div>

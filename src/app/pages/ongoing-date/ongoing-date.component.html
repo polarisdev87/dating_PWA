@@ -1,0 +1,108 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header [title]="title" (backAction)="back()" ></app-header>
+<div class="onGoingDate" *ngIf="details1">
+  <div class="user-name-detail" *ngIf="profile != undefined">
+      <div class="confirm-head">
+        <img class="sucess_icon mb-3" *ngIf="dateTitle == 'Completed'" src="../../../assets/icons/success_icn.png" alt="">
+        <h4>DATE {{dateTitle}}</h4>
+        <h5>${{dateDetails.preferredDateRate * dateDetails.duration}}</h5>
+      </div>
+      <div class="confirm-user-prifile">
+          <div class="pr-3">
+              <img *ngIf="profile.profileMedia[0]" [src]="profile.profileMedia[0].mediaURL" class="user-img" alt="">
+            </div>
+            <div>
+              <h4>{{profile.alias.trim()}}</h4>
+              <p *ngIf="profile.tmplocation">{{profile.tmplocation.city}}, {{profile.tmplocation.state}}</p>
+            </div>
+      </div>
+    </div>
+    <div class="dates-time" *ngIf="dateDetails != undefined">
+      <div class="row  tmpDate">
+        <div class="col-6">
+          <p>{{dateDetails.preferredDate}}</p>
+        </div>
+        <div class="col-6">
+            <p>{{dateDetails.tmpDate.day}}, {{dateDetails.tmpDate.month}}
+                {{dateDetails.tmpDate.date}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>{{dateDetails.venueName}}</p>
+        </div>
+        <div class="col-6">
+          <p>{{dateDetails.time}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <p>{{dateDetails.venueLocation}}</p>
+        </div>
+        <div class="col-6">
+          <p>{{dateDetails.duration}}hrs</p>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="timeCounter">
+  <ng-container *ngIf="finishDate1 && !isVideoChat">
+    <div class="timer">
+      <app-clock [time]="checkinTime" [duration]="dateHour" (timeout)="timeFinish($event)"></app-clock>
+      <button type="button" class="btn w-100 mt-4" (click)="finishDate()">FINISH DATE</button>
+    </div>
+  </ng-container>
+</div>
+
+<!-- Video chat -->
+<div class="join-date">
+  <div class="code-sec" *ngIf="isVideoChat && finishDate1">
+    <div>
+      <label>{{dateDetails.meetingId | slice:0:10}}...</label>
+      <i class="far fa-copy meeting-id-copy" (click)="copyToClipart(dateDetails.meetingId)"></i>
+    </div>
+    <p class="qrData w-100 mt-3">Video Meeting ID Number</p>
+  </div>
+</div>
+
+<div class="timeCounter" *ngIf="isVideoChat">
+  <ng-container *ngIf="finishDate1">
+    <div class="timer">
+      <button type="button" class="btn w-100 mt-4" (click)="joinVideoDate()">JOIN VIDEO DATE</button>
+    </div>
+  </ng-container>
+</div>
+
+<div class="time-comment" *ngIf="commentDate">
+  <p>How did your date go?</p>
+  <img class="img-thumbsup" *ngIf="!likeDateIcone" src="../../../assets/images/rate_thumbsUp_normal.png" alt="" (click)="likeDate()">
+  <img class="img-thumbsup" *ngIf="likeDateIcone" src="../../../assets/images/rate_thumbsUp_active.png" alt="">
+  <img class="img-thumbsdown" *ngIf="!dislikeDateIcone" src="../../../assets/images/rate_thumbsDown_normal.png" alt="" (click)="dislikeDate()">
+  <img class="img-thumbsdown" *ngIf="dislikeDateIcone" src="../../../assets/images/rate_thumbsDown_active.png" alt="">
+
+  <div *ngIf="dislike" class="comment-content">
+    <form class="dateher-sec" name="commentForm" [formGroup]="commentForm" (submit)="submitComment()"
+      #myform="ngForm">
+      <div class="form-group">
+        <p>We are sorry to hear your date did not go well.
+          Help us improve the experience.Is there anything
+          we can do on our end to help?
+        </p>
+        <textarea #comment class="form-control" rows="5" id="comment" formControlName="comment" name="comment"
+          placeholder="Enter your comment"></textarea>
+      </div>
+      <button type="submit" class="btn w-100">SUBMIT MY COMMENT</button>
+
+    </form>
+
+  </div>
+  <div class="timeCounter-feedback" *ngIf="feedBackSend">
+    <h4>Your feedBack has been sent!</h4>
+    <p>We value your feedback and will do what's in our reach to improve your future dates.</p>
+  </div>
+</div>
+
+
+
+

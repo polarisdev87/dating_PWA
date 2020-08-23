@@ -1,0 +1,213 @@
+body {
+  padding-top: 0;
+}
+
+.video-chat-wrap-bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+
+  .video-chat-sec-bg {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .header{
+      padding-bottom: 20px;
+      i{
+        color:#EDC228;
+        font-size: 20px;
+      }
+    }
+
+    .title {
+      color: #EDC228;
+      text-align: left;
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    .video-form{
+      width: 100%;
+
+      p {
+        color: #fff;
+        font-size: 15px;
+      }
+      input{
+        text-align: left;
+      }
+    }
+  }
+}
+
+.video-chat-join {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  .VideoChatTag{
+    color: #EDC228;
+    font-size: 20px;
+    overflow: hidden;
+    background-color: black;
+    background-size: 70px 70px;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+
+    .start-video-title{
+      //border-radius: 10px;
+      //background-color: black;
+      position: absolute;
+      padding: 20px;
+      font-size: 25px;
+
+      // i.connecting{
+      //   color: white;
+      // }
+      // i.connected{
+      //   color: #EDC228;
+      // }
+      // i.disconnected{
+      //   color: white;
+      // }
+      // i {
+      //   span {
+      //     margin-left: 10px;
+      //   }
+      // }
+      span{
+        color: #EDC228;
+      }
+    }
+
+    .partner-container{
+      //position: absolute;
+      //top: 0px;
+      background-color: black;
+      //border-top: 5px solid white;
+    }
+
+    .local-preview{
+      width: 100%;
+      overflow: hidden;
+      //bottom: 0px;
+      //position: absolute;
+      background-color: black;
+      overflow: hidden;
+      border-top: 4px solid #EDC228;
+      //border-bottom: 5px solid white;
+      //border-radius: 10px;
+      
+      i {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: #EDC228;
+        z-index: 1;
+
+        span {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .blank-preview{
+      width: 100%;
+      overflow: hidden;
+      background-color: black;
+      overflow: hidden;
+      border-top: 4px solid #EDC228;
+    }
+
+    .partner-blank-preview{
+      width: 100%;
+      overflow: hidden;
+      background-color: black;
+      overflow: hidden;
+    }
+
+    .footer{
+      width: 100%;
+      overflow: hidden;
+
+      .header{
+        overflow: hidden;
+        width: 100%;
+        padding: 5px;
+        font-size: 25px;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        background-color: black;
+        opacity: 0.5;
+        bottom: 68px;
+    
+        i{
+          color:#EDC228;
+          font-size: 20px;
+          padding-top: 25px;
+          width: 33%;
+        }
+    
+        .timeCounter{
+          padding-bottom: 20px;
+        }
+      }
+
+      .video-join-bottom{
+        width: 100%;
+        padding: 15px;
+        font-size: 25px;
+        background-color: black;
+        display: flex;
+        align-content: center;
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        opacity: 0.5;
+        
+        .display-button{
+          width: 33.33%;
+          text-align: center;
+  
+          i {
+            //position: absolute;
+            //bottom: 10px;
+            //left: 10px;
+            display: inline-block;
+            color: #EDC228;
+            z-index: 1;
+    
+            span {
+              margin-left: 10px;
+            }
+          }
+        }
+      }
+  
+      // .compress-view{
+      //   //width: 100%;
+      //   //padding: 20px;
+      //   // position: absolute;
+      //   // top: 20px;
+      //   // right: 20px;
+      // }
+  
+      // .expand-view{
+      //   //height: 480px;
+      //   //position: relative;
+      //   margin: 20px 0px;
+      // }
+    }
+  }
+
+  .video-chat-btm{
+    margin: 20px 0px;
+  }
+}

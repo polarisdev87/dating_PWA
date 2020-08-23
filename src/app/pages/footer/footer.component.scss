@@ -1,0 +1,40 @@
+.footer-wrap {
+  background: #131313;
+  text-align: center;
+  padding: 10px 15px 25px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+
+  .footer-option {
+    display: flex;
+
+    div {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  img {
+    height: 30px;
+    width: 30px;
+    &:last-child {
+      height: 25px;
+      width: 25px;
+    }
+  }
+
+  .border-img {
+    border: 2px solid #ccc;
+  }
+
+  .profile {
+    border-radius: 50%;
+  }
+
+  .activeProfile {
+    border: 2px solid #E2D291;
+  }
+}

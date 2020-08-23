@@ -1,0 +1,22 @@
+.stripeCardForm{
+    padding: 25px;
+}
+.StripeElement {
+    box-sizing: border-box;
+  
+    height: 40px;
+  
+    padding: 12px;
+
+    border-radius: 1px;
+    background-color: #131313;
+}
+
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}

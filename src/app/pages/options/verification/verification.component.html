@@ -1,0 +1,86 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="verification-wrap">
+  <app-header [leftBtn]='leftBtn' (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+  <div class="verification-sec" *ngIf='!childScreen'>
+    <div class="form-group">
+      <label>Email<span class="required">(Required)</span></label>
+      <div class="verification-category">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <img [src]="verify.email.url" alt="">
+            <p  [style.color]="verify.email.text == 'Verified' ? 'white' : 'red'">{{verify.email.text}}</p>
+          </div>
+          <div class="col-4" (click)="doEmailVerefication()">
+            <h5>{{verify.email.isVerified ? 'Verified' : 'Verify'}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Phone<span class="required">(Required)</span></label>
+      <div class="verification-category">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <img [src]="verify.phone.url" alt="">
+            <p  [style.color]="verify.phone.text == 'Verified' ? 'white' : 'red'">{{verify.phone.text}}</p>
+          </div>
+          <div class="col-4" (click)="doPhoneVerefication()">
+            <h5>{{verify.phone.isVerified ? 'Verified' : 'Verify'}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label>Google</label>
+        <div class="verification-category">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <img [src]="verify.google.url" alt="">
+              <p [style.color]="verify.google.text == 'Verified' ? 'white' : 'red'">{{verify.google.text}}</p>
+            </div>
+            <div class="col-4" (click)="verifyGoogle()">
+              <h5>{{verify.google.isVerified ? 'Verified' : 'Verify'}}</h5>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+    <div class="form-group">
+      <label>Government ID</label>
+      <div class="verification-category">
+        <div class="row align-items-center">
+          <div class="col-8">
+            <img [src]="verify.id.url" alt="">
+            <p  [style.color]="verify.id.text == 'Verified' ? 'white' : 'red'">{{verify.id.text}}</p>
+          </div>
+          <div *ngIf="myProfile" class="col-4" (click)="dogovernmentIdVerefication(verify)">
+            <h5>{{verify.id.isVerified ? 'Verified' :  myProfile.governmentID ? 'Pending' : 'Verify'}}</h5>
+          </div>
+          <input type="file" class="d-none" accept="image/*" id="imageUpload" #imageUpload (change)="upload($event)"
+          multiple />
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf='childScreen'>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center mb-4 mt-5">
+          <img src="../../../assets/images/logo/xclusive_logo.png" height="70" alt="#" />
+        </div>
+      </div>
+      <div class="code-verify">
+        <p>Please type verification code</p>
+        <p>sent to {{myProfile.phoneNumberCode}}{{myProfile.phoneNumber}}</p>
+      </div>
+      <form name="codeForm" [formGroup]="codeForm" (submit)="verifyCode()">
+          <div class="form-group">
+            <input type="number" id="code" class="form-control" formControlName="code" name="code" placeholder="Code">
+          </div>
+          <button type="submit" id="verify" class="btn w-100 mt-2">verify</button>
+      </form>
+    </div>
+  </div>

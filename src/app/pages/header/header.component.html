@@ -1,0 +1,46 @@
+<div [attr.class]="isBlackHeader? 'header-wraper blackHeader' : 'header-wraper'">
+    <div class="left-btn" [hidden]='!isLeftBtn' (click)=" back()">
+      <i class="fas fa-chevron-left"></i>
+    </div>
+    <div class="left-btn" [hidden]='!isNotificationBtn' (click)="notificationButtonClick()">
+      <img [src]="'../../../assets/images/notifications_icon.png'" alt="" width="20px">
+      <i *ngIf="notificationAlert == true" class="fas fa-circle notification-active"></i>
+    </div>
+    <div class="title">
+      {{title}}
+      <i *ngIf="title && isActiveIcon && activeIconData" class="fas fa-circle active-user-icon"></i>
+      <i *ngIf="title && isActiveIcon && !activeIconData" class="far fa-circle active-user-icon"></i>
+    </div>
+    <div class="rgtBtn" [hidden]="!isRightBtn" (click)="right()">
+      {{rgtBtn}}
+    </div>
+    <div class="rgtBtn" [hidden]="!isRightIcon" (click)="right()">
+      <img [src]="rgtIcon" alt="" width="20px">
+    </div>
+    <div class="rgtBtn mr-2-5" [hidden]="!isChatButton" (click)="chatButtonClick()">
+      <img [src]="'../../../assets/images/chat.png'" alt="" width="20px">
+    </div>
+    <div [hidden]="!isRightList" class="rgtBtn">
+      <button class="btn btn-select" type="button" id="dropdownMenuButton1"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       Sort By
+       <i class="fas fa-angle-down"></i>
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+        <a class="dropdown-item" data-cy="status" *ngFor="let status of datesStatus" (click)="searchBystatus('status',status)">
+         {{status}}
+        </a>
+      </div>
+    </div>
+    <div *ngIf="datesStatus.length > 0"[hidden]="!isRightIconList" class="rgtBtn">
+      <button class="btn btn-select" type="button" id="dropdownMenuButton1"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img [src]="rgtIcon" alt="" width="20px">
+      </button>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton1">
+        <a class="dropdown-item" data-cy="status" *ngFor="let status of datesStatus" (click)="searchBystatus('status',status)">
+          {{status}}
+        </a>
+      </div>
+    </div>
+</div>

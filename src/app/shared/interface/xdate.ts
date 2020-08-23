@@ -1,0 +1,33 @@
+export class Xdate {
+    createdTimestamp: number = Number();
+    date: string = '';
+    duration: number = Number();
+    endTimestamp: number = Number();
+    femaleUserAlias: string = '';
+    femaleUserDateCompletedWithRating: boolean = false;
+    femaleUserDateEndedEarly: boolean = false;
+    femaleUserDateId: string = '';
+    femaleUserFullName: string = '';
+    femaleUserId: string = '';
+    femaleUserRemoveAction: boolean = false;
+    id: string = '';
+    maleUserAlias: string = '';
+    maleUserDateCompletedWithRating: boolean = false;
+    maleUserDateEndedEarly: boolean = false;
+    maleUserDateId: string = '';
+    maleUserFullName: string = '';
+    maleUserId: string = '';
+    maleUserRemoveAction: boolean = false;
+    noShowNoPayRate: number = Number();
+    preferredDate: string = '';
+    preferredDateRate: number = Number();
+    status: string = '';
+    time: string = '';
+    timestamp: number = Number();
+    venueLatitude: number = Number();
+    venueLocation: string = '';
+    venueLongitude: number = Number();
+    venueName: string = '';
+    total: number = Number();
+
+}

@@ -1,0 +1,41 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="dates-wrap">
+  <app-header [leftBtn]='leftBtn' [notificationButton]='true' (notificationButtonAction)='notificationCall($event)' [title]="title" [rgtList]='datesStatus' (rightListAction)='searchBystatus($event)'>
+  </app-header>
+  <button type="button" id={{buttonId}} class="btn w-100 checkInButton" (click)="checkInDates($event,checkInDate)" *ngIf="checkInButton">{{buttonStatus}}</button>
+  <div class="dates-sec container-fluid mt-1" *ngIf='dates != undefined'>
+    <div class="row pl-2 pr-2" *ngFor="let x of [].constructor(dateCounter); let i = index">
+      <div class="col-6 p-1" *ngIf='i%2 == 0'>
+        <!-- Video chat condition -->
+        <div class="dates-date" (click)="actionOnDate(dates[i])" [ngClass]="[ dates[i].isVideoChat ? 'isVideoChatCard' : '']">
+          <i class="fas fa-times" *ngIf='dates[i].status === "Cancelled"  || dates[i].status === "Declined"' (click)="cancelDate(dates[i])"></i>
+          <h5>{{dates[i].tmpDate.day}}, {{dates[i].tmpDate.month}}</h5>
+          <label>{{dates[i].tmpDate.date}}</label>
+          <span *ngIf="this.currentUser.gender.toLowerCase() === 'female'">{{dates[i].maleUserAlias}}</span>
+          <span *ngIf="this.currentUser.gender.toLowerCase() === 'male'">{{dates[i].femaleUserAlias}}</span>
+          <p>{{dates[i].status}}</p>
+        </div>
+      </div>
+      <div class="col-6 p-1" *ngIf='i%2 == 0 && dates[i+1]!= undefined'>
+        <div class="dates-date" (click)="actionOnDate(dates[i+1])" [ngClass]="[ dates[i+1].isVideoChat ? 'isVideoChatCard' : '']">
+          <i class="fas fa-times" *ngIf='dates[i+1].status === "Cancelled"  || dates[i+1].status === "Declined"'
+            (click)="cancelDate(dates[i+1])"></i>
+            <h5>{{dates[i+1].tmpDate.day}}, {{dates[i+1].tmpDate.month}}</h5>
+            <label>{{dates[i+1].tmpDate.date}}</label>
+          <span *ngIf="this.currentUser.gender.toLowerCase() === 'female'">{{dates[i+1].maleUserAlias}}</span>
+          <span *ngIf="this.currentUser.gender.toLowerCase() === 'male'">{{dates[i+1].femaleUserAlias}}</span>
+          <p>{{dates[i+1].status}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dates-sec container-fluid mt-1" *ngIf="dateCounter == 0 && showBlankScreen">
+    <div class="no-date">
+      <div class="mb-5">
+        <img src="../../../assets/images/no-data.png" height="100" alt="">
+      </div>
+      <h5>You have no date history right now. </h5>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

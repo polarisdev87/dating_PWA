@@ -1,0 +1,93 @@
+.aniT {
+  transition: all 1s linear;
+}
+
+.transition {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.carousel {
+  .content {
+    display: flex;
+
+    .item {
+      width: 100%;
+      display: block;
+
+      .img {
+        width: 100%;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        height: 0;
+        padding-bottom: 50%;
+      }
+    }
+  }
+
+  .item {
+    width: 100%;
+    display: block;
+
+    .img {
+      width: 100%;
+      display: block;
+      background-size: cover;
+      background-position: center;
+      height: 0;
+      padding-bottom: 50%;
+    }
+  }
+
+  .ball {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid;
+    opacity: 0.5;
+
+    &.visible {
+      opacity: 1;
+    }
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: #ff5252;
+  }
+
+  .click-area {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 3em;
+    }
+  }
+}
+
+/* footer */
+
+.footer-wrap {
+  background: #242424;
+  text-align: center;
+  padding: 10px 15px;
+
+  .footer-option {
+    display: flex;
+
+    div {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  img {
+    height: 30px;
+  }
+}

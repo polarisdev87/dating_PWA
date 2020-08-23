@@ -1,0 +1,35 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="my-favorite-wrap">
+  <app-header [leftBtn]='leftBtn' [notificationButton]='true' (notificationButtonAction)='notificationCall($event)' [title]="title"></app-header>
+  <div class="my-facorite-sec" *ngFor="let favoriteUser of myFavoriteUsers; let i = index">
+  <div class="user-img-sec" (click)="feedDetail(favoriteUser)">
+    <div class="blur-bg"
+      [style.backgroundImage]="'url('+ favoriteUser.profileMedia[0].mediaURL +')'"
+    ></div>
+    <img [src]="favoriteUser.profileMedia[0].mediaURL" alt="">
+  </div>
+    <div class="flex-grow-1" (click)="feedDetail(favoriteUser)">
+      <p class="mb-2">{{favoriteUser.alias.trim()}}, {{currentYear - favoriteUser.age}}
+        <i *ngIf="favoriteUser.userStatus" class="fas fa-circle"></i>
+        <i *ngIf="!favoriteUser.userStatus" class="far fa-circle"></i>
+      </p>
+      <p class="mb-2">{{favoriteUser.location}}</p>
+      <p>{{favoriteUser.distance}} mi</p>
+    </div>
+    <div>
+      <img src="../../../assets/images/chat.png" (click)="chat(favoriteUser,$event)" class="chat-img mr-3" alt="">
+      <img src="../../../assets/images/favorite_active.png" (click)="unFavoriteUsers(favoriteUser,$event)" class="chat-img"
+        alt="">
+    </div>
+  </div>
+  <div class="container-fluid mt-1" *ngIf="myFavoriteUsers.length == 0 && showBlankScreen">
+    <div class="no-favorite">
+      <div class="mb-5">
+        <img src="../../../assets/images/no-data.png" height="100" alt="">
+      </div>
+      <h5>You have no favorites yet. <br/>
+      Stop being antisocial and start sending some 💞</h5>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

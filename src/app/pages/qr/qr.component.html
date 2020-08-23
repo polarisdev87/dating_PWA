@@ -1,0 +1,15 @@
+<div [hidden]="!isShow" style="width:275px;margin: 10px;padding: 10px;background-color: white">
+  <qrcode [qrdata]="qrdata" [size]="256" [level]="'H'"></qrcode>
+</div>
+
+<div [hidden]="!isRead">
+  <zxing-scanner #scanner class="test-class" start="true" [device]="selectedDevice" (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+</div>
+
+<h2 *ngIf="!this.selectedDevice">No camera selected.</h2>
+
+<div>
+<button (click)="showQR()">Generate QR</button>
+<button (click)="scanQR()">Scan QR</button>
+<button (click)="reset()">Reset QR</button>
+</div>

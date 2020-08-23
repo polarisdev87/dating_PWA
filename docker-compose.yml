@@ -1,0 +1,14 @@
+version: "3.5"
+
+services:
+  xclusive:
+    container_name: pwa-docker-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ".:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    ports:
+      - "4200:4200"
+    command: npm start

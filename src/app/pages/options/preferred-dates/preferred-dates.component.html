@@ -1,0 +1,233 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="preferred-dates">
+  <app-header [leftBtn]='leftBtn' (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+
+  <div class="preferred-dates_sec">
+    <h5>Preferred Dates</h5>
+    <p>Select 1 or up to 3 preferred dates to be featured on your profile.</p>
+
+    <div class="switch-sec">
+      <div>
+        <p>Dinner</p>
+      </div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" [checked]="preferredDate.dinner" [(ngModel)]="preferredDate.dinner" (change)="checkPreferredDate('dinnerRate')">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="switch-sec">
+      <div>
+        <p>Cocktails</p>
+      </div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" [checked]="preferredDate.cocktail" [(ngModel)]="preferredDate.cocktail" (change)="checkPreferredDate('cocktailRate')">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="switch-sec">
+      <div>
+        <p>Special Event</p>
+      </div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" [checked]="preferredDate.specialEvent" [(ngModel)]="preferredDate.specialEvent" (change)="checkPreferredDate('eventRate')">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="switch-sec">
+      <div>
+        <p>Video Chat</p>
+      </div>
+      <div>
+        <label class="switch">
+          <input type="checkbox" [checked]="preferredDate.videoChat" [(ngModel)]="preferredDate.videoChat" (change)="checkPreferredDate('videoChatRate')">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="preferred-dates_sec">
+    <h4>{{preferredDate.level}}</h4>
+    <p class="text-center">Your Xclusive Level</p>
+    <div class="hourly-rate">
+      <h6>set your hourly rate</h6>
+
+      <div class="select-hourly-rate">
+        <div class="row">
+          <div class="col-2 text-right">
+            $
+          </div>
+          <div class="col-4">
+            $25 - $49
+          </div>
+          <div class="col-4 text-center">
+            <span class="title-lbl">CHIC</span>
+          </div>
+          <div class="col-2">
+            <label class="custom-radio">
+              <input type="radio" id="level" name="level" [checked]="preferredDate.level === 'CHIC'" value="CHIC"
+                (click)="changeLevel('CHIC')">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 text-right">
+            $$
+          </div>
+          <div class="col-4">
+            $50 - $99
+          </div>
+          <div class="col-4 text-center">
+            <span class="title-lbl">COSMO</span>
+          </div>
+          <div class="col-2">
+            <label class="custom-radio">
+              <input type="radio" id="level" name="level" [checked]="preferredDate.level === 'COSMO'" value="COSMO"
+                (click)="changeLevel('COSMO')">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 text-right">
+            $$$
+          </div>
+          <div class="col-4">
+            $100 - $250
+          </div>
+          <div class="col-4 text-center">
+            <span class="title-lbl">CLASSY</span>
+          </div>
+          <div class="col-2">
+            <label class="custom-radio">
+              <input type="radio" id="level" name="level" [checked]="preferredDate.level === 'CLASSY'" value="CLASSY"
+                (click)="changeLevel('CLASSY')">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-2 text-right">
+            $$$$
+          </div>
+          <div class="col-4">
+            $250 +
+          </div>
+          <div class="col-4 text-center">
+            <span class="title-lbl">LUXE</span>
+          </div>
+          <div class="col-2">
+            <label class="custom-radio">
+              <input type="radio" id="level" name="level" [checked]="preferredDate.level === 'LUXE'" value="LUXE"
+                (click)="changeLevel('LUXE')">
+              <span class="checkmark"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="set-rate" [hidden]="!preferredDate.dinner && !preferredDate.cocktail && !preferredDate.specialEvent">
+    <h5>Set your rate</h5>
+    <p>Default rates are set at minimum, as we suggest you start with. Min. and max rates are deteremined by your
+      Xclusive Level. You have full control to set your rate within each Level's range.</p>
+
+    <div class="dates-event">
+      <div class="row">
+        <div class="col-4 p-1">
+          <h5>Event</h5>
+        </div>
+        <div class="col-2 text-center p-1">
+          <h5>Min.</h5>
+        </div>
+        <div class="col-3 text-center p-1">
+          <h5>Max</h5>
+        </div>
+        <div class="col-3 text-center p-1">
+          <h5>Your rate</h5>
+        </div>
+      </div>
+      <div class="row align-items-center" [hidden]="!preferredDate.dinner">
+        <div class="col-4 p-1">
+          <p>Dinner</p>
+        </div>
+        <div class="col-2 text-center p-1">
+          <p>${{minRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+            <p>{{preferredDate.level === 'LUXE' ? '&#8734;' : '$'+maxRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+          <div class="form-group m-0 currencyinput">
+            <span>$</span>
+            <input id="dinnerRate" class="form-control text-left" type="number" name="dinnerRate"
+              [(ngModel)]="preferredDate.dinnerRate">
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center" [hidden]="!preferredDate.cocktail">
+        <div class="col-4 p-1">
+          <p>Cocktails</p>
+        </div>
+        <div class="col-2 text-center p-1">
+          <p>${{minRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+            <p>{{preferredDate.level === 'LUXE' ? '&#8734;' : '$'+maxRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+          <div class="form-group m-0 currencyinput">
+            <span>$</span>
+            <input type="number" id="cocktailRate" class="form-control text-left" name="cocktailRate"
+              [(ngModel)]="preferredDate.cocktailRate">
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center" [hidden]="!preferredDate.specialEvent">
+        <div class="col-4 p-1">
+          <p>Special event</p>
+        </div>
+        <div class="col-2 text-center p-1">
+          <p>${{minRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+            <p>{{preferredDate.level === 'LUXE' ? '&#8734;' : '$'+maxRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+          <div class="form-group m-0 currencyinput">
+            <span>$</span>
+            <input type="number" id="eventRate" class="form-control text-left" name="eventRate"
+              [(ngModel)]="preferredDate.eventRate">
+          </div>
+        </div>
+      </div>
+      <!-- Video chat -->
+      <div class="row align-items-center" [hidden]="!preferredDate.videoChat">
+        <div class="col-4 p-1">
+          <p>Video Chat</p>
+        </div>
+        <div class="col-2 text-center p-1">
+          <p>${{minRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+            <p>{{preferredDate.level === 'LUXE' ? '&#8734;' : '$'+maxRate}}</p>
+        </div>
+        <div class="col-3 text-center p-1">
+          <div class="form-group m-0 currencyinput">
+            <span>$</span>
+            <input type="number" id="videoChatRate" class="form-control text-left" name="videoChatRate"
+              [(ngModel)]="preferredDate.videoChatRate">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

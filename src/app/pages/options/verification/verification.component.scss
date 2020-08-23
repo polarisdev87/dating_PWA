@@ -1,0 +1,19 @@
+.code-verify {
+  color: #fff;
+  text-align: center;
+
+  p {
+    margin: 0;
+
+    &:last-child {
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.required{
+  color: red;
+  font-size: 12px;
+  vertical-align: top;
+  margin-left: 5px;
+}

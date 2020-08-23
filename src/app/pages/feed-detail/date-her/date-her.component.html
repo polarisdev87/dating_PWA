@@ -1,0 +1,340 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+
+<div class="date-her-wrap-bg" [style.backgroundImage]="bgImage" *ngIf="currentPage === 1">
+  <div class="dateher-sec-bg">
+    <div>
+      <img (click)="back()" class="mb-5" src="../../../../assets/images/back_arrow.png" alt="#" height="20">
+      <img (click)="cancelDate()" class="mb-5 float-right" src="../../../../assets/images/x-button-black.png" alt="#" height="20">
+      <h1>What do you want to do on your date?</h1>
+    </div>
+    <div>
+      <div class="d-flex">
+        <label [ngClass]="{'active' : date.key == xdate.preferredDate}" *ngFor="let  date of preferredDate | keyvalue "
+          (click)="datesType(date)" required>
+          {{date.key}}
+        </label>
+      </div>
+      <button type="button" class="btn w-100" (click)="changePage(2)">Continue</button>
+    </div>
+  </div>
+  <!-- <button type="button" class="btn w-100" (click)="restaurant()">restaurant</button> -->
+</div>
+
+<!-- page 2 -->
+<div class="date-her-wrap" [hidden]="currentPage !== 2">
+  <form class="dateher-sec" name="dateForm" [formGroup]="dateForm" (submit)="datesDay()" #dates="ngForm">
+    <div>
+      <img class="mb-3" (click)="changePage(1)" src="../../../../assets/images/back_arrow.png" alt="#" height="20">
+      <img (click)="cancelDate()" class="mb-5 float-right" src="../../../../assets/images/x-button-black.png" alt="#" height="20">
+      <h4>When's is the date night?</h4>
+      <div class="form-group">
+        <h5><span>1</span> When are you free?</h5>
+        <h5 (click)="openDatePicker()">{{datePlaceholder}}</h5>
+        <!-- <input type="date" id="date" class="form-control" formControlName="date" name="date" placeholder="{{datePlaceholder}}"
+          (change)="dateSelected($event)" required min="{{today}}"> -->
+        <div class="position-relative" #datePicker>
+          <div class="custom-date-picker" style="width:100%">
+            <div>
+              <div class="month-header">
+                <div class="right-border" *ngFor="let  month of months">{{referenceMonthNames[month.month]}}</div>
+              </div>
+              <div class="days">
+                <div class="week" *ngFor="let  month of months">
+                  <div>S</div>
+                  <div>M</div>
+                  <div>T</div>
+                  <div>W</div>
+                  <div>T</div>
+                  <div>F</div>
+                  <div class="right-border">S</div>
+                </div>
+              </div>
+              <div class="days">
+                <div class="months right-border" *ngFor="let  month of months">
+                  <div [ngClass]="{'past-date' :day.isActive,'date-border' : day.date ==selectedDate}" (click)="dateSelected(day.date,day.isActive)"
+                    *ngFor="let  day of month.date">{{day.day}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <h5><span>2</span> What time will you meet?</h5>
+        <label class="dateher-custom-radio" *ngFor="let  time of dateTime">
+          <input type="radio" formControlName="time" value={{time}}>
+          <span class="checkmark">{{time}}</span>
+        </label>
+      </div>
+      <div class="form-group">
+        <h5><span>3</span> How long will you stay?</h5>
+        <div class="custom-slider">
+          <ng5-slider *ngIf="dateForm" class="dateher-custom-slider" formControlName="duration" [options]="options"></ng5-slider>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="submit" class="btn w-100">Next</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- page 3 -->
+<div class="date-her-wrap" *ngIf="currentPage === 3">
+  <form class="dateher-sec" name="eventForm" [formGroup]="eventForm" (submit)="geteventData()" #myform="ngForm">
+    <div>
+      <img class="mb-3" (click)="changePage(2)" src="../../../../assets/images/back_arrow.png" alt="#" height="20">
+      <img (click)="cancelDate()" class="mb-5 float-right" src="../../../../assets/images/x-button-black.png" alt="#" height="20">
+      <h4>Event Details</h4>
+      <div class="form-group">
+        <label>Tell us about the event</label>
+        <textarea class="form-control" rows="3" id="eventDetails" formControlName="eventDetails" name="eventDetails"
+          placeholder="Enter information and details about the event"></textarea>
+          <div class="txt-count">{{eventForm.value.eventDetails.length}}/300</div>
+      </div>
+      <div class="form-group">
+        <label>Event Name</label>
+        <input type="text" id="eventName" class="form-control" formControlName="eventName" name="eventName" placeholder="Enter event name">
+      </div>
+      <!-- Video chat -->
+      <div formGroupName="address" *ngIf="xdate.preferredDate != 'Video Chat'">
+        <div class="form-group mb-2">
+          <label>Location</label>
+          <input type="text" id="address" class="form-control" formControlName="address" name="address" placeholder="Address Line 1">
+        </div>
+        <div class="form-group mb-2">
+          <input type="text" id="addressLine2" class="form-control" formControlName="addressLine2" name="addressLine2"
+            placeholder="Address Line 2">
+        </div>
+        <div class="form-group mb-2">
+          <input type="text" id="city" class="form-control" formControlName="city" name="city" placeholder="City">
+        </div>
+        <div class="row">
+          <div class="col-6 pr-1">
+            <div class="form-group mb-2">
+              <input type="text" id="state" class="form-control" formControlName="state" name="state" placeholder="State">
+            </div>
+          </div>
+          <div class="col-6 pl-1">
+            <div class="form-group mb-2">
+              <input type="text" id="postalCode" class="form-control" formControlName="postalCode" name="postalCode"
+                placeholder="PostalCode">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="submit" class="btn w-100">Next</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- page4 -->
+<div class="date-her-wrap" *ngIf="currentPage === 4">
+  <div class="dateher-sec">
+    <div>
+      <img class="mb-3" (click)="backToEventDetailPage()" src="../../../../assets/images/back_arrow.png" alt="#" height="20">
+      <img (click)="cancelDate()" class="mb-5 float-right" src="../../../../assets/images/x-button-black.png" alt="#" height="20">
+      <h4>Confirm your date</h4>
+      <div class="confirm-date">
+        <div class="user-name-detail">
+          <p>{{xdate.preferredDate}} date with</p>
+          <div *ngIf="femaleUser" class="d-flex align-items-center">
+            <div class="pr-3">
+              <div class="user-img-sec" *ngIf="femaleUser.profileMedia[0]">
+                  <div class="blur-bg"
+                  [style.backgroundImage]="'url('+ femaleUser.profileMedia[0].mediaURL  +')'"
+                  ></div>
+                  <img [src]="femaleUser.profileMedia[0].mediaURL" alt="">
+              </div>
+            </div>
+            <div class="">
+              <h4>{{femaleUser.alias}}</h4>
+              <p class="m-0">{{femaleUser.tmplocation.city}}, {{femaleUser.tmplocation.state}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="dates-time">
+          <div class="row  tmpDate">
+            <div class="col-7">
+              <p>{{xdate.preferredDate}}</p>
+            </div>
+            <div class="col-5">
+                <p>{{xdate.tmpDate.day}} {{xdate.tmpDate.month}}. {{xdate.tmpDate.date}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <p>{{xdate.venueName}}</p>
+            </div>
+            <div class="col-5">
+              <p>{{xdate.time}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <p>{{xdate.venueLocation}}</p>
+            </div>
+            <div class="col-5">
+              <p>{{xdate.duration}}hrs</p>
+            </div>
+          </div>
+        </div>
+        <div class="dates-time">
+          <div class="row">
+            <div class="col-7">
+              <p>{{xdate.preferredDate}} Date ({{xdate.duration}}hrs)</p>
+            </div>
+            <div class="col-5 text-right">
+              <p>${{(xdate.preferredDateRate) * (xdate.duration)}}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-7">
+              <p>No-Show No-Pay Insurance</p>
+            </div>
+            <div class="col-5 text-right">
+              <p>${{xdate.noShowNoPayRate}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="dates-time">
+          <div class="date-rate">
+            <div class="row">
+              <div class="col-7">
+                <p>Total</p>
+              </div>
+              <div class="col-5 text-right">
+                <p>${{xdate.total}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dates-time">
+          <div class="row">
+            <div class="col-7">
+              <p>Payment Method</p>
+            </div>
+            <div class="col-5 text-right" (click)="changePaymentMethod()">
+              <p>{{paymentMethodLabel}} <img class="ml-1" src="../../../../assets/images/right_arrow.png" height="13" alt=""> </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="btn w-100" (click)="InviteHer()">Invite Her</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- page 5 -->
+<div class="date-her-wrap" *ngIf="currentPage === 5">
+  <div class="dateher-sec invite-her">
+    <div class="text-right">
+      <button type="button" class="btn-close" [routerLink]="['/dates']">
+        <img src="../../../../assets/images/large_white_x_icon.png" height="25" alt="">
+      </button>
+    </div>
+    <div class="confirm-date">
+      <div class="text-center">
+        <img class="mb-2" src="../../../../assets/images/thumbs_icon.png" height="50" alt="">
+        <h4>Invite Sent.</h4>
+        <h5>Look out for response from {{xdate.preferredDate}} date with</h5>
+      </div>
+      <div class="user-name-detail">
+        <p>{{xdate.preferredDate}} date with</p>
+        <div *ngIf="femaleUser" class="d-flex align-items-center">
+          <div class="pr-3">
+            <div class="user-img-sec" *ngIf="femaleUser.profileMedia[0]">
+                <div class="blur-bg"
+                [style.backgroundImage]="'url('+ femaleUser.profileMedia[0].mediaURL  +')'"
+                ></div>
+                <img [src]="femaleUser.profileMedia[0].mediaURL" alt="">
+            </div>
+          </div>
+          <div>
+            <h4>{{femaleUser.alias}}</h4>
+            <p class="m-0">{{femaleUser.tmplocation.city}}, {{femaleUser.tmplocation.state}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="dates-time">
+        <div class="row  tmpDate">
+          <div class="col-7">
+            <p>{{xdate.preferredDate}}</p>
+          </div>
+          <div class="col-5">
+              <p>{{xdate.tmpDate.day}} {{xdate.tmpDate.month}}. {{xdate.tmpDate.date}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-7">
+            <p>{{xdate.venueName}}</p>
+          </div>
+          <div class="col-5">
+            <p>{{xdate.time}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-7">
+            <p>{{xdate.venueLocation}}</p>
+          </div>
+          <div class="col-5">
+            <p>{{xdate.duration}}hrs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>&nbsp;</div>
+  </div>
+</div>
+
+<!-- page 6-->
+<div class="date-her-wrap" *ngIf="currentPage === 6">
+  <div class="dateher-sec">
+    <div class="restaurant-wrap">
+      <img class="mb-3" (click)="currentPage = 2" src="../../../../assets/images/back_arrow.png" alt="#" height="20">
+      <img (click)="cancelDate()" class="mb-5 float-right" src="../../../../assets/images/x-button-black.png" alt="#" height="20">
+      <h4>Where do you want to go?</h4>
+      <div [ngClass]="{'border-img' : selectedRestaurant.id == restaurant.id}" (click)="selectedRestaurant = restaurant"
+        class="restaurant-detail" *ngFor="let  restaurant of restaurantDetail.businesses">
+        <div>
+          <img [src]="restaurant.image_url" alt="">
+        </div>
+        <div>
+          <h4 style="-webkit-box-orient: vertical;">{{restaurant.alias}}</h4>
+          <h4 style="-webkit-box-orient: vertical;"> {{restaurant.cat}}</h4>
+          <!-- <p>{{restaurant.category}}</p> -->
+
+          <div class="ratting-sec">
+            <div>
+              <star-rating [disabled]="true" [readOnly]="'true'" [showHalfStars]="'true'" staticColor="ok" [starType]="'svg'"
+                [rating]="restaurant.rating"></star-rating>
+            </div>
+            <div>
+                <p>{{restaurant.distance}} mi</p>
+              <!-- <p>{{restaurant.distance / 1609 | number : '.2-2' }} mi</p> -->
+            </div>
+          </div>
+          <p>{{restaurant.review_count}} Review</p>
+          <div class="ratting-sec">
+            <div>
+              <p>{{restaurant.price}}</p>
+            </div>
+            <div>
+              <p>{{restaurant.location.city}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" (click)="selectRestaurant()" class="btn w-100">Next</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,129 @@
+<meta name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<app-header [title]="title" (backAction)="back()" [rgtIcon]="rgtIcon" (rightBtnAction)="makeUserFav()" [chatButton]="enableChatButton" (chatBtnAction)="startChat()"></app-header>
+<div class="dates-details-wrap" *ngIf="acceptDate">
+  <div class="accepted-date" *ngIf='dateDetails != undefined'>
+    <h6>{{dateStatus}} date</h6>
+    <h3>${{dateDetails.preferredDateRate * dateDetails.duration}}</h3>
+    <div class="user-name-detail" *ngIf="profile != undefined">
+      <div class="pr-3" (click)="redirectToFeed(profile.id)">
+        <div class="user-img-sec" *ngIf="profile.profileMedia[0]">
+            <div class="blur-bg"
+            [style.backgroundImage]="'url('+ profile.profileMedia[0].mediaURL  +')'"
+            ></div>
+            <img [src]="profile.profileMedia[0].mediaURL" alt="">
+        </div>
+      </div>
+      <div>
+        <h4>{{profile.alias.trim()}}</h4>
+        <p>{{profile.location}}</p>
+      </div>
+    </div>
+    <div class="dates-time">
+      <div class="row  tmpDate">
+        <div class="col-7">
+          <p>{{dateDetails.preferredDate}}</p>
+        </div>
+        <div class="col-5">
+          <p>{{dateDetails.tmpDate.day}} {{dateDetails.tmpDate.month}}. {{dateDetails.tmpDate.date}}<p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <p>{{dateDetails.venueName}}</p>
+        </div>
+        <div class="col-5">
+          <p>{{dateDetails.time}}-{{time}}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7" (click)='venueLocation()'>
+          <p class="location-link">{{dateDetails.venueLocation}}</p>
+        </div>
+        <div class="col-5">
+          <p>{{dateDetails.duration}} hrs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-sec" *ngIf="!isVideoChat">
+    <!-- <qrcode *ngIf="qrCheckIn" class="qrData" [qrdata]="qrdata" [size]="150" [level]="'H'"></qrcode> -->
+    <!-- <p [hidden]="otpCheckInSelected" class="qrData w-100 mt-3"(click)="otpCheckIn()">Show OTP</p> -->
+    <!-- <div [hidden]="!otpCheckInSelected"> -->
+    <div>
+      <label class="otp-space">{{qrdata}}</label>
+    </div>
+    <!-- <p [hidden]="!otpCheckInSelected" class="qrData w-100 mt-3"(click)="showQRCode()">Show QRcode</p> -->
+    <p class="qrData w-100 mt-3">Verification Code</p>
+  </div>
+  <!-- Video chat -->
+  <div class="code-sec" *ngIf="isVideoChat">
+    <div>
+      <label>{{dateDetails.meetingId | slice:0:10}}...</label>
+      <i class="far fa-copy meeting-id-copy" (click)="copyToClipart(dateDetails.meetingId)"></i>
+    </div>
+    <p class="qrData w-100 mt-3">Video Meeting ID Number</p>
+  </div>
+
+  <div class="report-problem">   
+    <button type="button" class="btn w-100" (click)="checkIn()">Check in</button>
+    <!-- <button type="button" class="btn w-100 mt-3" (click)="uber()">Book your uber now</button> -->
+
+    <button type="button" class="btn  w-100 mt-3" (click)="cancelDate1()">Cancel date</button>
+    <!-- <p>problem? Do you have a no-show?</p> -->
+    <p>Do you have a no-show?</p>
+    <button type="button" class="btn w-100"  (click)="report()">Report a problem</button>
+  </div>
+</div>
+
+<div class="declined-wrap" *ngIf="cancelDateFlag">
+  <div class="declined-head" *ngIf="dateDetails">
+    <p>Cancel Date with</p>
+    <h5>{{dateDetails.maleUserAlias}}</h5>
+    <p>Cancel date immediately</p>
+    <button type="submit" class="btn w-100 mt-4" (click)="onTapCancel(false)">CANCEL</button>
+  </div>
+
+  <h5 class="divider">OR</h5>
+
+  <div class="declined-bottom">
+    <form class="decline-form" name="cancelForm" [formGroup]="cancelForm" (submit)="onTapCancelWithReason(true)">
+      <div class="form-group lbl-comment">
+        <label>Comments:</label>
+        <textarea class="form-control" rows="3" placeholder="Enter Your Comments" name="comment"
+          formControlName="comment"></textarea>
+      </div>
+      <button type="submit" class="btn w-100 mt-2">CANCEL DATE WITH REASON</button>
+
+    </form>
+  </div>
+</div>
+<!-- <div *ngIf="isRead && !openOTPForm">
+  <div [hidden]="openOTPForm" class="scan-sec">
+    <p>Scan check in QR code: <br>{{title}}</p>
+    <zxing-scanner #scanner class="test-class" [device]="currentDevice"
+      (scanSuccess)="handleQrCodeResult($event)"></zxing-scanner>
+  </div>
+</div> -->
+<div *ngIf="isRead">
+  <div>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-8 text-center mb-4 mt-5">
+          <img src="../../../assets/images/logo/xclusive_logo.png" height="70" alt="#" />
+        </div>
+      </div>
+      <div class="code-verify">
+          <p>Please type verification code from</p>
+          <p>{{title}}</p>
+      </div>
+      <form name="otpForm" [formGroup]="otpForm">
+          <div class="form-group">
+            <input type="text" id="otp" class="form-control" formControlName="otp" name="otp" placeholder="Enter OTP">
+          </div>
+          <button type="button" class="btn w-100 mt-3" (click)="submitOTP()">SUBMIT</button>
+        </form>
+    </div>
+  </div>
+</div>

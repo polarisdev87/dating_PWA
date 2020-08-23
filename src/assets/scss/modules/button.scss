@@ -1,0 +1,37 @@
+.btn {
+  background-color: $primary-color;
+  border-radius: 0;
+  color: $dark-color;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .5px;
+
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.fb-btn {
+  background-color: $fb-color;
+  border-radius: 0;
+  color: $light-color;
+  text-transform: capitalize;
+  font-weight: 400;
+
+  i {
+    float: left;
+    margin-top: 4px;
+  }
+}
+
+.btn-secondary {
+  background-color: $secondary-color;
+  color: $disabled-color;
+  border-color: $secondary-color;
+}
+
+.btn-light {
+  background-color: transparent;
+  color: $light-color;
+  border: none;
+}

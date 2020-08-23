@@ -1,0 +1,45 @@
+.chat-body>div{
+    &:last-child {
+        padding-bottom: 70px;
+    }
+}
+
+.chat-body {
+    min-height: 100%;
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.chat-wrap {
+    height: 100%;
+}
+
+.user-img-sec {
+    height: 60px;
+    max-width: 60px;
+    border-radius: 50%;
+    flex: 0 0 60px;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    .blur-bg {
+      filter: blur(10px);
+      position: absolute;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      top: 0;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+    }
+    img {
+      height: 100%;
+      width: auto;
+      filter: blur(0);
+      background-color: black;
+      max-width: 100%;
+    }
+  }

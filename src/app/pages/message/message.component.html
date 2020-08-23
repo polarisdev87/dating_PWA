@@ -1,0 +1,36 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="message-wrap">
+  <app-header [leftBtn]='leftBtn' [title]="title" [notificationButton]='true' (notificationButtonAction)='notificationCall($event)'>
+  </app-header>
+
+  <div  *ngFor="let item of convo | orderBy: 'timeLastMessageReceived' : true">
+    <div *ngIf="item.lastMessageReceived != 'None' && item.isBlocked == false && item.isDeleted != true" class="message-sec" [routerLink]="['/chat',item.convoId]">
+      <div class="user-img-sec">
+          <div class="blur-bg"
+          [style.backgroundImage]="'url('+ item.profileUrl  +')'"
+          ></div>
+          <img [src]="item.profileUrl ? item.profileUrl : '../../../assets/images/image-loader.png'" alt="">
+      </div>
+      <div>
+        <h6>{{item.alias}}
+          <i *ngIf="item.userStatus" class="fas fa-circle active-user-icon"></i>
+          <i *ngIf="!item.userStatus" class="far fa-circle active-user-icon"></i>
+        </h6>
+        <label>{{item.lastMessageReceived}}</label>
+      </div>
+      <div class="flex-grow-1 text-right">
+        <p>{{item.timeLastMessageReceived | messageDate}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid mt-1" *ngIf="(convo.length == 0 && showBlankScreen) || (convo.length != 0 && msgCnt != 1)">
+    <div class="no-message">
+      <div class="mb-5">
+        <img src="../../../assets/images/no-data.png" height="100" alt="">
+      </div>
+      <h5>You have no messages yet.</h5>
+    </div>
+  </div>
+  
+  <app-footer *ngIf="myProfile != undefined" [profileUrl]='avatars[0].url'></app-footer>
+</div>

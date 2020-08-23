@@ -1,0 +1,55 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="login-wrap">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center mb-5 mt-5">
+        <img src="../../../assets/images/logo/xclusive_logo.png" height="70" alt=""/>
+      </div>
+      <div class="col-md-8">
+        <form name="loginForm" [formGroup]="loginForm" (submit)="login()">
+          <div class="form-group">
+            <input type="email" id="email" class="form-control" formControlName="email" name="email"
+              placeholder="Email Address">
+          </div>
+          <div>
+            <input type="password" id="password" class="form-control" formControlName="password" name="password"
+              placeholder="Password">
+          </div>
+          <button type="submit" id="login" class="btn w-100 mt-4 mb-4">Log in</button>
+          <p class="m-0 text-center">
+            <a class="forgot-link" id="forgotPassword" (click)="nextPage('forgot-password')">Forgot your password?</a>
+          </p>
+        </form>
+        <!-- <button type="submit" id="loginFB" data-toggle="modal" data-target="#myModal" class="btn w-100 fb-btn mt-4">
+          <i class="fab fa-facebook-square"></i>
+          Continue with Facebook
+        </button> -->
+        <!-- <p class="or-line">OR</p> -->
+        <button type="submit" id="loginGoogle" class="btn w-100 google-btn mt-4" (click)="signInWithGoogle()">
+          <span class="icon"></span>
+          Continue with Google
+        </button>
+        <p class="or-line">OR</p>
+        <button type="button" class="btn w-100" (click)="nextPage('register')">Create New Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>"Xclusive" wants to open "Facebook"</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="modalClose" class="btn btn-default" data-dismiss="modal">Close</button>
+        <!-- <button type="button" id="signFB" class="btn btn-default" data-dismiss="modal"
+          (click)="signInWithFB()">open</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>

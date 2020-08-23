@@ -1,0 +1,24 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="payment-wrap">
+  <app-header *ngIf="!isDateHer" (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+  <app-header *ngIf="isDateHer" (backAction)="back()" [title]="title"></app-header>
+
+  <div class="payment-sec">
+    <img src="../../../../assets/images/card.png" alt="">
+  </div>
+
+  <div class="card-list" *ngFor="let card of cardList; let i = index" (click)="setAsDefault(card)">
+    <h5>
+      <div>
+        <i *ngIf="isEditMode == true && i > 0 && card.isAllowDelete == true" class="fa fa-minus-circle delete-btn" (click)="allowDelete(i)"></i>
+        <i (click)="disallowDelete(i)" class="fas fa-credit-card"></i> {{card.brand}} <span> Ending In </span> {{card.last4}}
+      </div>
+      <i *ngIf="i == 0" class="fas fa-check"></i> 
+      <button type="button" class="btn" *ngIf="isEditMode == true && i > 0 && card.isDelete == true" (click)="deleteCard(i)">Delete</button>
+    </h5>
+  </div>
+
+  <div class="add-new-card" (click)="addCard()">
+    <h5><i class="fas fa-plus"></i> Add New Card...</h5>
+  </div>
+</div>

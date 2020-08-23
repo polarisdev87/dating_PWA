@@ -1,0 +1,116 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="my-profile-wrap">
+  <app-header [leftBtn]='leftBtn' [notificationButton]='true' (notificationButtonAction)='notificationCall($event)' [title]="title" [rgtIcon]="rgtIcon" (rightBtnAction)="right()"></app-header>
+  <div *ngIf="myProfile != undefined">
+    <ngx-hm-carousel #carousel [(ngModel)]="index" [autoplay-speed]="speed" [autoplay]="autoplay" [autoplay-direction]="direction"
+      [infinite]="infinite" [between-delay]="2000" [mourse-enable]="true" [data]="avatars" [aniTime]="300" class="carousel c-accent">
+
+      <section ngx-hm-carousel-container class="content">
+        <article class="item cursor-pointer" ngx-hm-carousel-item *ngFor="let avatar of avatars">
+          <!-- <div class="img" [style.backgroundImage]="'url('+avatar.url+')'">
+          </div> -->
+          <div class="img-placeholder-bg">
+            <div class="blur-wrap" [style.backgroundImage]="'url('+avatar.url+')'"></div>
+            <img class="profile-image" style="filter: blur(0);" [src]="avatar.url">
+          </div>
+        </article>
+        <ng-template #infiniteContainer></ng-template>
+      </section>
+      <ng-template #carouselContent let-avatar let-i="index">
+        <article class="item cursor-pointer">
+          <div class="img" [style.backgroundImage]="'url('+avatar.url+')'">
+          </div>
+        </article>
+      </ng-template>
+      <div *ngIf='avatars.length > 1'>
+        <ng-template #carouselDot let-model>
+          <div class="ball bg-accent" [class.visible]="model.index === model.currentIndex"></div>
+        </ng-template>
+      </div>
+    </ngx-hm-carousel>
+
+    <div class="user-info">
+      <h5>{{myProfile.alias.trim()}}, {{currentYear - myProfile.age}}
+        <span [hidden]='!isMale'>{{myProfile.bodyType}}</span>
+        <span class="f-span" [hidden]='isMale'>{{myProfile.dateAndRate ? myProfile.dateAndRate.xclusiveLevel : ''}}</span>
+      </h5>
+      <div class="feed-work">
+        <span>{{myProfile.work}}</span>
+        <span>{{myProfile.height}} <span [hidden]='isMale'> &nbsp;/ {{myProfile.bodyType}}</span></span>
+      </div>
+      <p>{{myProfile.zodiacSign}} <label class="zodiacSign">{{zodiacSign}}</label>
+      <span>
+        <img *ngIf="myProfile.upthumbImage" src="../../../assets/images/rate_thumbsUp_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px">  
+        <img *ngIf="myProfile.downthumbImage" src="../../../assets/images/rate_thumbsDown_normal.png" alt="" style="width: 14px;height:14px;margin-bottom: 6.1px"> 
+      &nbsp;&nbsp;{{myProfile.ratingPercentageString}} 0.00 mi</span></p>
+    </div>
+
+    <div class="user-details">
+      <h5>Location</h5>
+      <p class="mb-1">{{myProfile.location}}</p>
+      <p class="mb-4">0.00 mi</p>
+
+      <h5>About Me</h5>
+      <p>{{myProfile.aboutMe}}</p>
+    </div>
+
+    <div class="preferred-dates" [hidden]='isMale'>
+      <h5>Preferred Dates</h5>
+      <div class="dates-sec">
+        <div>
+          <p>Dinner</p>
+          <p>
+            {{myProfile.dateAndRate? myProfile.dateAndRate.preferredDate.Dinner?
+            '$'+myProfile.dateAndRate.preferredDate.Dinner+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <div>
+          <p>Cocktails</p>
+          <p>
+            {{myProfile.dateAndRate? myProfile.dateAndRate.preferredDate.Cocktails?
+            '$'+myProfile.dateAndRate.preferredDate.Cocktails+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <div>
+          <p>Special Event</p>
+          <p>
+            {{myProfile.dateAndRate? myProfile.dateAndRate.preferredDate['Special Event']?
+            '$'+myProfile.dateAndRate.preferredDate['Special Event']+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+        <!-- Video Chat -->
+        <div>
+          <p>Video Chat</p>
+          <p>
+            {{myProfile.dateAndRate? myProfile.dateAndRate.preferredDate['Video Chat']?
+            '$'+myProfile.dateAndRate.preferredDate['Video Chat']+'/hr' : '-' : '-' }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="interests" [hidden]="myProfile.interests === undefined">
+      <h5>interests</h5>
+      <label *ngFor="let interest of myProfile.interests; let i = index">{{interest}}</label>
+    </div>
+
+    <div class="verified">
+      <h5>verified</h5>
+      <div class="row">
+        <div class="col-3">
+          <img [src]="verify.google" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.id" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.email" alt="">
+        </div>
+        <div class="col-3">
+          <img [src]="verify.phone" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <app-footer></app-footer>
+</div>

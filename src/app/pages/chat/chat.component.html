@@ -1,0 +1,55 @@
+<meta name="viewport"
+  content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="chat-wrap" #chatBody>
+  <app-header [leftBtn]='leftBtn' [title]="title" (backAction)="back()" [rgtIcon]='rgtIcon' [rgtIconList]='chatEvents'
+    (rightListAction)='chatEventCalled($event)' [activeIcon]='true' [activeIconValue]='chatUserStatus'>
+  </app-header>
+  <div class="chat-body">
+    <div *ngFor="let messages of localMessages | keyvalue ">
+      <div *ngIf="messages.value.length > 0" class="chat-date">
+        <p>{{messages.key | date:'longDate'}}</p>
+      </div>
+      <div *ngFor="let item of messages.value">
+        <div *ngIf="item.senderId !== myProfile?.id" class="received-msg">
+          <div class="mr-3 user-img-sec" (click)="feedDetail(item.senderId)">
+              <div class="blur-bg" 
+              [style.backgroundImage]="'url('+ chatUserMediaUrl  +')'"
+              ></div>
+              <img [src]="chatUserMediaUrl ? chatUserMediaUrl : '../../../assets/images/image-loader.png'" alt="">
+          </div>
+          <div [innerHTML]="item.content">
+          </div>
+          <div [innerHTML]="item.timestamp | date:'h:mm a'">
+          </div>
+        </div>
+        <div *ngIf="item.senderId === myProfile?.id" class="sent-msg">
+          <div [innerHTML]="item.timestamp | date:'h:mm a'">
+          </div>
+          <div>
+            <p [innerHTML]="item.content"></p>
+          </div>
+          <div class="ml-3 user-img-sec"(click)="profilePage()">
+              <div class="blur-bg" 
+              [style.backgroundImage]="'url('+ myProfileMediaUrl  +')'"
+              ></div>
+              <img [src]="myProfileMediaUrl ? myProfileMediaUrl : '../../../assets/images/image-loader.png'" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="chat-footer">
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="messageText" placeholder="Say something..." #messageTextId>
+      <div class="input-group-append">
+        <button (click)="onMessageSend()" class="btn" type="button">
+          <img src="../../../assets/images/SendNormalColor.png" alt="">
+        </button>
+        <!-- <button [disabled]="!messageText" (click)="onMessageSend()" class="btn" type="button">
+          <img *ngIf="messageText" src="../../../assets/images/SendNormalColor.png" alt="">
+          <img *ngIf="!messageText" src="../../../assets/images/SendNormal.png" alt="">
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="earning-warp">
+    <app-header (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+
+    <div *ngIf="earningPage === 1 || earningPage === 2" class="balance-tag" (click)="listPage(2)">
+        <span>AVAILABALE BALANCE</span>
+        <span>$ {{availableBal | number:'1.2-2'}}</span>
+    </div>
+
+    <div  *ngIf="earningPage === 1 || earningPage === 3" class="balance-tag" (click)="listPage(3)">
+        <span>PENDING BALANCE</span>
+        <span>$ {{pendingBal | number:'1.2-2'}}</span>
+    </div>
+
+    <div  *ngIf="earningPage === 1 || earningPage === 4" class="balance-tag" (click)="listPage(4)">
+        <span>DISPUTE BALANCE</span>
+        <span>$ {{disputeBal | number:'1.2-2'}}</span>
+    </div>
+
+    <div  *ngIf="earningPage === 1 && availableBal > 0" class="balance-btn">
+        <button type="button" class="btn w-100" (click)="transferBalance()">TRANSFER</button>
+    </div>
+</div>
+
+<div *ngIf="earningPage === 2 || earningPage === 3" class="available-list-wrap">
+    <h5>{{listTitle}}</h5>
+    <div class="available-list-sec">
+        <div>AVAIL ON</div>
+        <div>DESCRIPTION</div>
+        <div>AMOUNTS</div>
+    </div>
+    <div class="available-list-sec-body" *ngFor="let history of historyData">
+        <div>{{history.availableOn | date:'shortDate'}}</div>
+        <div>{{history.description | titlecase }}</div>
+        <div>$ {{history.amount | number:'1.1-2'}}</div>
+    </div>
+</div>
+
+<div *ngIf="earningPage === 4" class="dispute-list-wrap">
+    <h5>{{listTitle}}</h5>
+    <div class="dispute-list-sec">
+        <div>DATE</div>
+        <div>TYPE</div>
+        <!-- <div>DURATION</div> -->
+        <div>DETAILS</div>
+        <div>AMOUNTS</div>
+    </div>
+    <div class="dispute-list-sec-body" *ngFor="let dispute of disputeData">
+        <div>{{dispute.timestamp | date:'shortDate'}}</div>
+        <div>{{dispute.preferredDate | titlecase }}</div>
+        <!-- <div>{{dispute.duration }}</div> -->
+        <div>{{dispute.status | titlecase }}</div>
+        <div>$ {{dispute.amount | number:'1.2-2'}}</div>
+    </div>
+</div>

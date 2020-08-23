@@ -1,0 +1,112 @@
+.my-profile-wrap {
+  padding-bottom: 50px !important;
+}
+
+.aniT {
+  transition: all 1s linear;
+}
+
+.transition {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.carousel {
+  .content {
+    display: flex;
+
+    .item {
+      width: 100%;
+      display: block;
+
+      .img {
+        image-orientation: from-image;
+        width: 100%;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        height: 400px;
+        padding-bottom: 50%;
+      }
+      .img-placeholder-bg {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        text-align: center;
+        background: #000;
+        position: relative;
+        overflow: hidden;
+      }
+      .profile-image {
+        width: auto;
+        display: inline;
+        max-height: 400px;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .item {
+    width: 100%;
+    display: block;
+
+    .img {
+      width: 100%;
+      display: block;
+      background-size: cover;
+      background-position: center;
+      height: 0;
+      padding-bottom: 50%;
+    }
+  }
+
+  .ball {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #fff;
+
+    &.visible {
+      background: #edc228;
+    }
+  }
+
+  .progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 5px;
+    background: #ff5252;
+  }
+
+  .click-area {
+    width: 50px;
+    text-align: center;
+
+    i {
+      font-size: 3em;
+    }
+  }
+}
+
+.zodiacSign {
+  height: 20px;
+  background-color: purple;
+  text-align: center;
+  width: 20px;
+  border-radius: 5px;
+}
+
+.blur-wrap {
+  filter: blur(10px);
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}

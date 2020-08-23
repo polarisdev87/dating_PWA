@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "default": "xclusive-app-prod",
+    "prod": "xclusive-app-prod",
+    "QA": "xclusive-app-qa"
+  }
+}

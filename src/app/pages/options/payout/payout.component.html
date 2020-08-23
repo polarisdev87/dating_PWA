@@ -1,0 +1,12 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="payout-wrap">
+  <app-header (backAction)="back()" [title]="title" [rgtBtn]="rgtBtn" (rightBtnAction)="right()"></app-header>
+
+  <div class="card-list" *ngFor="let account of accounts; let i = index" (click)="setAsDefault(account.id)">
+    <h5>
+      <div> XXXX-XXXX-XXXX-{{account.last4}} </div>
+      <i *ngIf="account.isDefault === true" class="fas fa-check"></i> 
+    </h5>
+  </div>
+
+</div>

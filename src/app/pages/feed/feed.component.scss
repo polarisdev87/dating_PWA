@@ -1,0 +1,229 @@
+/* Insert here your CSS */
+.feed-page-wraper {
+  color: white;
+  font-size: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  .top-bar {
+    padding: 10px;
+    position: fixed;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    top: 50px;
+    background: #000;
+
+    button {
+      text-transform: unset;
+      font-weight: bold;
+    }
+  }
+
+  .my-profile-wrap {
+    padding-bottom: 50px !important;
+  }
+
+  .aniT {
+    transition: all 1s linear;
+  }
+
+  .transition {
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .carousel {
+    .content {
+      display: flex;
+
+      .item {
+        width: 100%;
+        display: block;
+
+        .img {
+          image-orientation: from-image;
+          width: 100%;
+          display: block;
+          background-size: cover;
+          background-position: center;
+          height: 400px;
+          padding-bottom: 50%;
+        }
+        .img-placeholder-bg {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+          background: #000;
+          position: relative;
+          overflow: hidden;
+        }
+        .profile-image {
+          width: auto;
+          display: inline;
+          max-height: 400px;
+          max-width: 100%;
+        }
+      }
+    }
+
+    .item {
+      width: 100%;
+      display: block;
+
+      .img {
+        width: 100%;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        height: 0;
+        padding-bottom: 50%;
+      }
+    }
+
+    .ball {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #fff;
+
+      &.visible {
+        background: #edc228;
+      }
+    }
+
+    .progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 5px;
+      background: #ff5252;
+    }
+
+    .click-area {
+      width: 50px;
+      text-align: center;
+
+      i {
+        font-size: 3em;
+      }
+    }
+  }
+
+  .zodiacSign {
+    height: 20px;
+    background-color: purple;
+    text-align: center;
+    width: 20px;
+    border-radius: 5px;
+  }
+
+  .user-info {
+    background-color: #131313;
+    color: #fff;
+    margin: 10px;
+    position: relative;
+
+    .like-img {
+      position: absolute;
+      z-index: 1;
+      right: 10px;
+      height: 40px;
+      top: 40%;
+      transform: translate(0%, -40%);
+    }
+
+    .broker-img {
+      position: absolute;
+      z-index: 1;
+      left: 10px;
+      height: 40px;
+      top: 40%;
+      transform: translate(0%, -40%);
+    }
+
+    h5 {
+      margin: 0;
+      font-size: 16px;
+
+      span {
+        float: right;
+        font-size: 15px;
+        font-weight: 400;
+      }
+
+      .f-span {
+        float: right;
+        font-size: 14px;
+        background-color: rgba($color: #edc228, $alpha: 0.5);
+        font-weight: 300;
+        text-transform: uppercase;
+        padding: 1px 8px;
+      }
+    }
+
+    p {
+      margin: 10px 0;
+      font-size: 15px;
+
+      &:last-child {
+        margin: 0;
+      }
+
+      span {
+        float: right;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.feed-work {
+  display: flex;
+  font-size: 14px;
+
+  > span {
+    width: 50%;
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+}
+
+.blur-wrap {
+  filter: blur(10px);
+  position: absolute;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  width: 100%;
+  bottom: 0;
+}
+
+.active-user-icon {
+  font-size: 10px;
+  margin-left: 10px;
+  color: #edc228;
+}
+
+.no-feed {
+  height: calc(100vh - 115px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  h5 {
+    color: #EDC228;
+    font-size: 16px;
+    margin-bottom: 15rem;
+  }
+
+  
+}

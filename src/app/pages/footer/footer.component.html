@@ -1,0 +1,26 @@
+<footer>
+  <div class="footer-wrap container-fluid">
+    <div class="footer-option">
+      <div (click)="dates()">
+        <img *ngIf="pageNo != 1" src="../../../assets/images/nav_dates_normal.png" alt="">
+        <img *ngIf="pageNo == 1" src="../../../assets/images/nav_dates_active.png" alt="">
+      </div>
+      <div (click)="favorite()">
+        <img *ngIf="pageNo != 2" src="../../../assets/images/nav_favs_normal.png" alt="">
+        <img *ngIf="pageNo == 2" src="../../../assets/images/nav_favs_active.png" alt="">
+      </div>
+      <div (click)="feed()">
+        <img *ngIf="pageNo != 3" src="../../../assets/images/nav_feed_normal.png" alt="">
+        <img *ngIf="pageNo == 3" src="../../../assets/images/nav_feed_active.png" alt="">
+      </div>
+      <div (click)="message()">
+        <img *ngIf="pageNo != 4" src="../../../assets/images/nav_chat_normal.png" alt="">
+        <img *ngIf="pageNo == 4" src="../../../assets/images/nav_chat_active.png" alt="">
+      </div>
+      <div (click)="profile()">
+        <img *ngIf="pageNo != 5" src="../../../assets/images/user_normal.png" alt="">
+        <img *ngIf="pageNo == 5" src="../../../assets/images/user_active.png" alt="">
+      </div>
+    </div>
+  </div>
+</footer>

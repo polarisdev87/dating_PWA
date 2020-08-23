@@ -1,0 +1,51 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=no" />
+<div class="register-page-wraper">
+  <app-header (backAction)="back()" [title]="'CREATE NEW ACCOUNT'"></app-header>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center mt-5">
+        <img src="../../../assets/images/logo/xclusive_logo.png" height="70" alt="#"/>
+        <h5>Xclusive Singles. Spontaneous Dates.</h5>
+      </div>
+      <div class="col-md-8">
+        <form name="registerForm" [formGroup]="registerForm" (submit)="register()">
+          <div class="form-group">
+            <input type="email" class="form-control" formControlName="email" name="email" placeholder="Email Address">
+          </div>
+          <div class="row">
+            <div class="col-6 pr-1">
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="firstName" name="firstName"
+                  placeholder="First Name">
+              </div>
+            </div>
+            <div class="col-6 pl-1">
+              <div class="form-group">
+                <input type="text" class="form-control" formControlName="lastName" name="lastName"
+                  placeholder="Last Name">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" id="password" class="form-control" formControlName="password" name="password"
+              placeholder="Create a Password">
+          </div>
+          <div class="form-group">
+            <select class="form-control" formControlName="gender" name="gender">
+              <option value="" hidden disabled>Select Your Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <button type="submit" class="btn w-100 mt-4 mb-4">Get Started</button>
+          <p class="terms-link">
+            By signing up, you accept that you are 21 years or over and that you've read and you agree to our
+            <a [routerLink]="['/register/terms']">Terms</a> and <a [routerLink]="['/register/privacy-policy']">Privacy Policy</a>. Promoting illegal
+            commercial activities (such as prostitution) is
+            prohibited. You can opt-out any time.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
